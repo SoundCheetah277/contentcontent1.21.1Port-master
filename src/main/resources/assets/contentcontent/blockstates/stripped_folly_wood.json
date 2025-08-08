@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "contentcontent:block/stripped_folly_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "contentcontent:block/stripped_folly_wood"
+    },
+    "axis=z": {
+      "model": "contentcontent:block/stripped_folly_wood",
+      "x": 90
+    }
+  }
+}

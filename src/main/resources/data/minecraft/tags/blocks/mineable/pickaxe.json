@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:steel_bar",
+    "contentcontent:brazier",
+    "contentcontent:soul_brazier",
+    "contentcontent:calcite_stairs",
+    "contentcontent:calcite_slab",
+    "contentcontent:polished_calcite",
+    "contentcontent:polished_calcite_stairs",
+    "contentcontent:polished_calcite_slab",
+    "contentcontent:calcite_bricks",
+    "contentcontent:calcite_brick_stairs",
+    "contentcontent:calcite_brick_slab",
+    "contentcontent:tuff_stairs",
+    "contentcontent:tuff_slab",
+    "contentcontent:polished_tuff",
+    "contentcontent:polished_tuff_stairs",
+    "contentcontent:polished_tuff_slab",
+    "contentcontent:tuff_bricks",
+    "contentcontent:tuff_brick_stairs",
+    "contentcontent:tuff_brick_slab",
+    "contentcontent:smooth_basalt_stairs",
+    "contentcontent:smooth_basalt_slab",
+    "contentcontent:iron_scaffolding",
+    "contentcontent:aquarium_glass",
+    "contentcontent:equivalence_detector"
+  ]
+}

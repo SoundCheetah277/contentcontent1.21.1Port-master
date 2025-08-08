@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_bottom",
+  "textures": {
+    "top": "contentcontent:block/oak_branch_top",
+    "side": "minecraft:block/oak_log"
+  }
+}

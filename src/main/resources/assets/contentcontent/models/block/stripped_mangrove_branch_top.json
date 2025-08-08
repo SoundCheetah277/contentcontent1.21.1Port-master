@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_top",
+  "textures": {
+    "top": "contentcontent:block/stripped_mangrove_branch_top",
+    "side": "minecraft:block/stripped_mangrove_log"
+  }
+}

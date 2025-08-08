@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "contentcontent:calcite_bricks"
+    }
+  },
+  "result": {
+    "item": "contentcontent:calcite_brick_slab",
+    "count": 6
+  }
+}

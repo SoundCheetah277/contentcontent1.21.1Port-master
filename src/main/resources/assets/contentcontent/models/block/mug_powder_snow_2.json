@@ -1,0 +1,16 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"1": "minecraft:block/powder_snow"
+	},
+	"elements": [
+		{
+			"from": [5, 6, 5],
+			"to": [11, 6, 11],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [5, 5, 11, 11], "texture": "#1", "tintindex": 0}
+			}
+		}
+	]
+}

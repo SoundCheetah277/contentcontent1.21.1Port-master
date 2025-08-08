@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:calcite_slab",
+    "contentcontent:polished_calcite_slab",
+    "contentcontent:calcite_brick_slab",
+    "contentcontent:tuff_slab",
+    "contentcontent:polished_tuff_slab",
+    "contentcontent:tuff_brick_slab",
+    "contentcontent:smooth_basalt_slab"
+  ]
+}

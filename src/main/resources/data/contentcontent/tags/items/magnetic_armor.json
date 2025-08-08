@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "elysium:elysium_helmet",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_chestplate",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_leggings",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_boots",
+      "required": false
+    },
+    {
+      "id": "diansu_prime:prime_helmet",
+      "required": false
+    },
+    {
+      "id": "diansu_prime:prime_chestplate",
+      "required": false
+    },
+    {
+      "id": "diansu_prime:prime_leggings",
+      "required": false
+    },
+    {
+      "id": "diansu_prime:prime_boots",
+      "required": false
+    }
+  ]
+}

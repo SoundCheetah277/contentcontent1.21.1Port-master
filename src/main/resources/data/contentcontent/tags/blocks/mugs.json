@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:mug",
+    "contentcontent:lava_mug",
+    "contentcontent:milk_mug",
+    "contentcontent:potion_mug",
+    "contentcontent:pilk_mug",
+    "contentcontent:powder_snow_mug",
+    "contentcontent:honey_mug"
+  ]
+}

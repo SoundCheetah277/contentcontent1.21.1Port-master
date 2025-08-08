@@ -1,0 +1,46 @@
+{
+	"schemaVersion": 1,
+	"id": "contentcontent",
+	"version": "${version}",
+	"name": "EightSidedSquare's Content Mod",
+	"description": "squirrels",
+	"authors": [
+		"EightSidedSquare",
+		"doctor4t",
+		"Luxintrus",
+		"Dav (Porter)"
+	],
+	"contact": {
+		"homepage": "https://eightsidedsquare.com/",
+		"sources": "https://guns.lol/dav"
+	},
+	"license": "ARR",
+	"icon": "assets/contentcontent/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.eightsidedsquare.contentcontent.core.ContentMod"
+		],
+		"client": [
+          "com.eightsidedsquare.contentcontent.client.ContentClient"
+		],
+		"modmenu": [
+			"com.eightsidedsquare.contentcontent.core.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"contentcontent.mixins.json"
+	],
+	"accessWidener": "contentcontent.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"geckolib": "*",
+		"cloth-config2": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

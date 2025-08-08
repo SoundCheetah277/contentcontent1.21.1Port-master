@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_bottom",
+  "textures": {
+    "top": "contentcontent:block/stripped_jungle_branch_top",
+    "side": "minecraft:block/stripped_jungle_log"
+  }
+}

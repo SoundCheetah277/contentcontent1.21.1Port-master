@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "axis=x,powered=false": {
+      "model": "contentcontent:block/equivalence_detector",
+      "y": 90
+    },
+    "axis=y,powered=false": {
+      "model": "contentcontent:block/equivalence_detector",
+      "x": 90
+    },
+    "axis=z,powered=false": {
+      "model": "contentcontent:block/equivalence_detector"
+    },
+    "axis=x,powered=true": {
+      "model": "contentcontent:block/equivalence_detector_on",
+      "y": 90
+    },
+    "axis=y,powered=true": {
+      "model": "contentcontent:block/equivalence_detector_on",
+      "x": 90
+    },
+    "axis=z,powered=true": {
+      "model": "contentcontent:block/equivalence_detector_on"
+    }
+  }
+}

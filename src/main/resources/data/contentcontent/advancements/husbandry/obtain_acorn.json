@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "acorn": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "contentcontent:acorn"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.obtain_acorn.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "contentcontent:acorn"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.obtain_acorn.title"
+    }
+  },
+  "requirements": [
+    [
+      "acorn"
+    ]
+  ]
+}

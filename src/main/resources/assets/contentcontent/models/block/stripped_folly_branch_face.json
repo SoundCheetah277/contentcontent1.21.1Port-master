@@ -1,0 +1,6 @@
+{
+  "parent": "contentcontent:block/branch_face",
+  "textures": {
+    "side": "contentcontent:block/stripped_folly_log"
+  }
+}

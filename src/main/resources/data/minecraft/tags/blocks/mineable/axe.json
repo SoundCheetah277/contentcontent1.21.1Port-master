@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:giant_acorn_block",
+    "#contentcontent:branches",
+    "#contentcontent:mugs",
+    "contentcontent:display_case",
+    "#contentcontent:folly_vines"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_carpet"
+    }
+  ],
+  "result": {
+    "item": "contentcontent:moss_layer",
+    "count": 1
+  }
+}

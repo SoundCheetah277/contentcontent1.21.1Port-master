@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "y": 90,
+      "model": "contentcontent:block/mug"
+    },
+    "facing=north": {
+      "model": "contentcontent:block/mug"
+    },
+    "facing=south": {
+      "y": 180,
+      "model": "contentcontent:block/mug"
+    },
+    "facing=west": {
+      "y": 270,
+      "model": "contentcontent:block/mug"
+    }
+  }
+}

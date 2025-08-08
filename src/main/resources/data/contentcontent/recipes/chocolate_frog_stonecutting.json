@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "contentcontent:chocolate"
+  },
+  "result": "contentcontent:chocolate_frog",
+  "count": 1
+}

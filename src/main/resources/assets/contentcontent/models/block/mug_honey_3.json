@@ -1,0 +1,16 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"1": "minecraft:block/honey_block_top"
+	},
+	"elements": [
+		{
+			"from": [5, 9, 5],
+			"to": [11, 9, 11],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [5, 5, 11, 11], "texture": "#1", "tintindex": 0}
+			}
+		}
+	]
+}

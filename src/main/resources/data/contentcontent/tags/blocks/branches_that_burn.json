@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:oak_branch",
+    "contentcontent:birch_branch",
+    "contentcontent:spruce_branch",
+    "contentcontent:jungle_branch",
+    "contentcontent:acacia_branch",
+    "contentcontent:dark_oak_branch",
+    "contentcontent:mangrove_branch",
+    "contentcontent:stripped_oak_branch",
+    "contentcontent:stripped_birch_branch",
+    "contentcontent:stripped_spruce_branch",
+    "contentcontent:stripped_jungle_branch",
+    "contentcontent:stripped_acacia_branch",
+    "contentcontent:stripped_dark_oak_branch",
+    "contentcontent:stripped_mangrove_branch"
+  ]
+}

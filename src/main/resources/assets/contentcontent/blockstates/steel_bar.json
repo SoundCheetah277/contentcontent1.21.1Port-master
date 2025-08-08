@@ -1,0 +1,99 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "axis": "x"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "y"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar"
+      }
+    },
+    {
+      "when": {
+        "axis": "z"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "top_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_top",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "y",
+        "top_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_top"
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "top_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_bottom",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "bottom_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_bottom",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "y",
+        "bottom_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_bottom"
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "bottom_cap": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_top",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "chain": "true"
+      },
+      "apply": {
+        "model": "contentcontent:block/steel_bar_chain"
+      }
+    }
+  ]
+}

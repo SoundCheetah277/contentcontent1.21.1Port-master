@@ -1,0 +1,63 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "y": 90,
+        "model": "contentcontent:block/mug"
+      }
+    },
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "contentcontent:block/mug"
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "y": 180,
+        "model": "contentcontent:block/mug"
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "y": 270,
+        "model": "contentcontent:block/mug"
+      }
+    },
+    {
+      "when": {
+        "level": 1
+      },
+      "apply": {
+        "model": "contentcontent:block/mug_water_1"
+      }
+    },
+    {
+      "when": {
+        "level": 2
+      },
+      "apply": {
+        "model": "contentcontent:block/mug_water_2"
+      }
+    },
+    {
+      "when": {
+        "level": 3
+      },
+      "apply": {
+        "model": "contentcontent:block/mug_water_3"
+      }
+    }
+  ]
+}

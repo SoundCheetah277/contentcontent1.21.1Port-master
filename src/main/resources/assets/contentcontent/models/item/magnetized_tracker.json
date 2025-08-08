@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "contentcontent:item/magnetized_tracker_00",
+    "layer1": "contentcontent:item/magnetized_tracker_overlay_00"
+  },
+  "overrides": [
+    { "predicate": { "angle": 0.000000 }, "model": "contentcontent:item/magnetized_tracker_08" },
+    { "predicate": { "angle": 0.031250 }, "model": "contentcontent:item/magnetized_tracker_09" },
+    { "predicate": { "angle": 0.093750 }, "model": "contentcontent:item/magnetized_tracker_10" },
+    { "predicate": { "angle": 0.156250 }, "model": "contentcontent:item/magnetized_tracker_11" },
+    { "predicate": { "angle": 0.218750 }, "model": "contentcontent:item/magnetized_tracker_12" },
+    { "predicate": { "angle": 0.281250 }, "model": "contentcontent:item/magnetized_tracker_13" },
+    { "predicate": { "angle": 0.343750 }, "model": "contentcontent:item/magnetized_tracker_14" },
+    { "predicate": { "angle": 0.406250 }, "model": "contentcontent:item/magnetized_tracker_15" },
+    { "predicate": { "angle": 0.468750 }, "model": "contentcontent:item/magnetized_tracker_00" },
+    { "predicate": { "angle": 0.531250 }, "model": "contentcontent:item/magnetized_tracker_01" },
+    { "predicate": { "angle": 0.593750 }, "model": "contentcontent:item/magnetized_tracker_02" },
+    { "predicate": { "angle": 0.656250 }, "model": "contentcontent:item/magnetized_tracker_03" },
+    { "predicate": { "angle": 0.718750 }, "model": "contentcontent:item/magnetized_tracker_04" },
+    { "predicate": { "angle": 0.781250 }, "model": "contentcontent:item/magnetized_tracker_05" },
+    { "predicate": { "angle": 0.843750 }, "model": "contentcontent:item/magnetized_tracker_06" },
+    { "predicate": { "angle": 0.906250 }, "model": "contentcontent:item/magnetized_tracker_07" },
+    { "predicate": { "angle": 0.968750 }, "model": "contentcontent:item/magnetized_tracker_08" }
+  ]
+}

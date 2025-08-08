@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "contentcontent:block/stripped_folly_log_top",
+    "side": "contentcontent:block/stripped_folly_log"
+  }
+}

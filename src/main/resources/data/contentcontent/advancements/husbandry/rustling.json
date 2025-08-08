@@ -1,0 +1,33 @@
+{
+  "parent": "contentcontent:husbandry/obtain_acorn",
+  "criteria": {
+    "rustling": {
+      "conditions": {
+        "effects": {
+          "contentcontent:rustling": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.rustling.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:oak_leaves"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.rustling.title"
+    }
+  },
+  "requirements": [
+    [
+      "rustling"
+    ]
+  ]
+}

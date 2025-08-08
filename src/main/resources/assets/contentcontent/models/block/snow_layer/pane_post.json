@@ -1,0 +1,76 @@
+{
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "0": "minecraft:block/powder_snow",
+    "particle": "minecraft:block/powder_snow"
+  },
+  "elements": [
+    {
+      "from": [
+        6.9,
+        -8.1,
+        6.9
+      ],
+      "to": [
+        9.1,
+        0.1,
+        9.1
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          -4,
+          7
+        ]
+      },
+      "faces": {
+        "up": {
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "cube_outline",
+      "from": [
+        9.1,
+        0.1,
+        9.1
+      ],
+      "to": [
+        6.9,
+        -8.1,
+        6.9
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          -4,
+          7
+        ]
+      },
+      "faces": {
+        "down": {
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        }
+      }
+    }
+  ]
+}

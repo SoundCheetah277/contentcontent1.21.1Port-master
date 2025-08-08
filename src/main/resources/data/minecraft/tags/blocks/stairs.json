@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:calcite_stairs",
+    "contentcontent:polished_calcite_stairs",
+    "contentcontent:calcite_brick_stairs",
+    "contentcontent:tuff_stairs",
+    "contentcontent:polished_tuff_stairs",
+    "contentcontent:tuff_brick_stairs",
+    "contentcontent:smooth_basalt_stairs"
+  ]
+}

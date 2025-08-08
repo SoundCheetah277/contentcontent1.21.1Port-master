@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_top",
+  "textures": {
+    "top": "contentcontent:block/folly_branch_top",
+    "side": "contentcontent:block/folly_log"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "contentcontent:block/giant_acorn_block"
+    },
+    "facing=east": {
+      "model": "contentcontent:block/giant_acorn_block",
+      "y": 90,
+      "x": 270
+    },
+    "facing=north": {
+      "model": "contentcontent:block/giant_acorn_block",
+      "y": 180,
+      "x": 90
+    },
+    "facing=south": {
+      "model": "contentcontent:block/giant_acorn_block",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "contentcontent:block/giant_acorn_block",
+      "x": 180
+    },
+    "facing=west": {
+      "model": "contentcontent:block/giant_acorn_block",
+      "y": 90,
+      "x": 90
+    }
+  }
+}

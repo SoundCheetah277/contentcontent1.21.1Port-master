@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IXI",
+    "IXI",
+    "IXI"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_bars"
+    },
+    "I": {
+      "item": "contentcontent:steel_bar"
+    }
+  },
+  "result": {
+    "item": "contentcontent:iron_scaffolding",
+    "count": 12
+  }
+}

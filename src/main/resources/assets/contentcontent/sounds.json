@@ -1,0 +1,534 @@
+{
+  "entity.squirrel.ambient": {
+    "sounds": [
+      {
+        "name": "contentcontent:entity/squirrel/ambient1"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/ambient2"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/ambient3"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/ambient4"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/ambient5"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/ambient6"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.ambient"
+  },
+  "entity.squirrel.hurt": {
+    "sounds": [
+      {
+        "name": "contentcontent:entity/squirrel/hurt1",
+        "volume": 0.5
+      },
+      {
+        "name": "contentcontent:entity/squirrel/hurt2",
+        "volume": 0.5
+      },
+      {
+        "name": "contentcontent:entity/squirrel/hurt3",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.hurt"
+  },
+  "entity.squirrel.step": {
+    "sounds": [
+      {
+        "name": "mob/rabbit/hop1",
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hop2",
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hop3",
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hop4",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.step"
+  },
+  "entity.squirrel.death": {
+    "sounds": [
+      {
+        "name": "contentcontent:entity/squirrel/death1",
+        "volume": 0.5
+      },
+      {
+        "name": "contentcontent:entity/squirrel/death2",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.death"
+  },
+  "entity.squirrel.happy": {
+    "sounds": [
+      {
+        "name": "contentcontent:entity/squirrel/happy1"
+      },
+      {
+        "name": "contentcontent:entity/squirrel/happy2"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.happy"
+  },
+  "entity.squirrel.eat": {
+    "sounds": [
+      {
+        "name": "mob/panda/eat1",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat2",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat3",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat4",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat5",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat6",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat7",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat8",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat9",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat10",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat11",
+        "pitch": 1.75
+      },
+      {
+        "name": "mob/panda/eat12",
+        "pitch": 1.75
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.eat"
+  },
+  "entity.squirrel.dig": {
+    "sounds": [
+      {
+        "name": "block/hanging_roots/step1",
+        "pitch": 1.75,
+        "volume": 0.5
+      },
+      {
+        "name": "block/hanging_roots/step2",
+        "pitch": 1.75,
+        "volume": 0.5
+      },
+      {
+        "name": "block/hanging_roots/step3",
+        "pitch": 1.75,
+        "volume": 0.5
+      },
+      {
+        "name": "block/hanging_roots/step4",
+        "pitch": 1.75,
+        "volume": 0.5
+      },
+      {
+        "name": "block/hanging_roots/step5",
+        "pitch": 1.75,
+        "volume": 0.5
+      },
+      {
+        "name": "block/hanging_roots/step6",
+        "pitch": 1.75,
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.entity.squirrel.dig"
+  },
+  "block.stickshift.bad_to_the_bone": {
+    "sounds": [
+      {
+        "name": "contentcontent:block/stickshift/bad_to_the_bone"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.block.stickshift.bad_to_the_bone"
+  },
+  "block.note_block.horn": {
+	  "sounds": [
+      {
+        "name": "contentcontent:note/horn"
+      }
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "block.note_block.electric_guitar": {
+	  "sounds": [
+      {
+        "name": "contentcontent:note/electric_guitar"
+      }
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
+  "item.goat_horn.resist": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/pillager/horn_celebrate"
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.fly": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/goat_horn/fly"
+      }
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  
+  
+  "item.copper_horn.clear_temper_journey.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/clear_temper_journey/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.clear_temper_journey.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/clear_temper_journey/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.clear_temper_journey.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/clear_temper_journey/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.dry_urge_anger.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/dry_urge_anger/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.dry_urge_anger.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/dry_urge_anger/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.dry_urge_anger.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/dry_urge_anger/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.fearless_river_gift.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fearless_river_gift/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.fearless_river_gift.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fearless_river_gift/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.fearless_river_gift.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fearless_river_gift/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.fresh_nest_thought.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fresh_nest_thought/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.fresh_nest_thought.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fresh_nest_thought/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.fresh_nest_thought.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/fresh_nest_thought/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.great_sky_falling.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/great_sky_falling/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.great_sky_falling.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/great_sky_falling/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.great_sky_falling.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/great_sky_falling/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.mumble_fire_memory.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/mumble_fire_memory/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.mumble_fire_memory.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/mumble_fire_memory/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.mumble_fire_memory.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/mumble_fire_memory/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.old_hymn_resting.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/old_hymn_resting/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.old_hymn_resting.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/old_hymn_resting/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.old_hymn_resting.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/old_hymn_resting/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.pure_water_desire.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/pure_water_desire/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.pure_water_desire.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/pure_water_desire/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.pure_water_desire.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/pure_water_desire/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.secret_lake_tear.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/secret_lake_tear/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.secret_lake_tear.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/secret_lake_tear/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.secret_lake_tear.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/secret_lake_tear/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  
+  
+  "item.copper_horn.sweet_moon_love.bass": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/sweet_moon_love/bass"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.sweet_moon_love.melody": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/sweet_moon_love/melody"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.copper_horn.sweet_moon_love.harmony": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/copper_horn/sweet_moon_love/harmony"
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.copper_horn.play"
+  },
+  "item.brush.brushing.generic": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/brush/brushing_generic1",
+        "pitch": 0.8,
+        "volume": 0.4
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_generic2",
+        "pitch": 0.8,
+        "volume": 0.4
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_generic3",
+        "pitch": 0.8,
+        "volume": 0.4
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_generic4",
+        "pitch": 0.8,
+        "volume": 0.4
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.brush.brushing.generic"
+  },
+  "item.brush.brushing.gravel": {
+    "sounds": [
+      {
+        "name": "contentcontent:item/brush/brushing_gravel1",
+        "pitch": 0.6,
+        "volume": 0.6
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_gravel2",
+        "pitch": 0.6,
+        "volume": 0.6
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_gravel3",
+        "pitch": 0.6,
+        "volume": 0.6
+      },
+      {
+        "name": "contentcontent:item/brush/brushing_gravel4",
+        "pitch": 0.6,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "contentcontent.subtitles.item.brush.brushing.gravel"
+  },
+  "item.brush.brushing.gravel.complete": {
+    "sounds": [
+      "contentcontent:item/brush/brushing_gravel_complete1",
+      "contentcontent:item/brush/brushing_gravel_complete2",
+      "contentcontent:item/brush/brushing_gravel_complete3",
+      "contentcontent:item/brush/brushing_gravel_complete4"
+    ],
+    "subtitle": "contentcontent.subtitles.item.brush.brushing.gravel.complete"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "contentcontent:crimson_branch",
+    "contentcontent:warped_branch",
+    "contentcontent:stripped_crimson_branch",
+    "contentcontent:stripped_warped_branch",
+    "#contentcontent:branches_that_burn",
+    "contentcontent:folly_branch",
+    "contentcontent:stripped_folly_branch"
+  ]
+}

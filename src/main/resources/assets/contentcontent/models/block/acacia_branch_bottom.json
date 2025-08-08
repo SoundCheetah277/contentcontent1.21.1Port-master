@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_bottom",
+  "textures": {
+    "top": "contentcontent:block/acacia_branch_top",
+    "side": "minecraft:block/acacia_log"
+  }
+}

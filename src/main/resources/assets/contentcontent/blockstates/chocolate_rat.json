@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "y": 90,
+      "model": "contentcontent:block/chocolate_rat"
+    },
+    "facing=north": {
+      "model": "contentcontent:block/chocolate_rat"
+    },
+    "facing=south": {
+      "y": 180,
+      "model": "contentcontent:block/chocolate_rat"
+    },
+    "facing=west": {
+      "y": 270,
+      "model": "contentcontent:block/chocolate_rat"
+    }
+  }
+}

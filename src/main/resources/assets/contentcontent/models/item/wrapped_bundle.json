@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "contentcontent:item/wrapped_bundle",
+    "layer1": "contentcontent:item/wrapped_bundle_overlay"
+  }
+}

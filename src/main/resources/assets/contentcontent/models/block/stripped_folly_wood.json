@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "contentcontent:block/stripped_folly_log",
+    "side": "contentcontent:block/stripped_folly_log"
+  }
+}

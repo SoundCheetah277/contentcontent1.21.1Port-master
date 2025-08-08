@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "contentcontent:block/folly_planks",
+    "side": "contentcontent:block/folly_planks",
+    "top": "contentcontent:block/folly_planks"
+  }
+}

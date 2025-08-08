@@ -1,0 +1,6 @@
+{
+  "parent": "contentcontent:block/branch_face",
+  "textures": {
+    "side": "minecraft:block/stripped_warped_stem"
+  }
+}

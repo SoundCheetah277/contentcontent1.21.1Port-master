@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "contentcontent:block/folly_vines_plant"
+  }
+}

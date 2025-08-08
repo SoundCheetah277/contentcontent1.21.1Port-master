@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "EIE",
+    " E "
+  ],
+  "key": {
+    "E": {
+      "item": "elysium:elysium_ingot"
+    },
+    "I": {
+	  "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "contentcontent:magnetized_tracker",
+	"count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": ["elysium"]
+    }
+  ]
+}

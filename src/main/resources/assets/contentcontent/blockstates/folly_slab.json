@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "contentcontent:block/folly_slab"
+    },
+    "type=double": {
+      "model": "contentcontent:block/folly_planks"
+    },
+    "type=top": {
+      "model": "contentcontent:block/folly_slab_top"
+    }
+  }
+}

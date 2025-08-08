@@ -1,0 +1,7 @@
+{
+  "parent": "contentcontent:block/branch_top",
+  "textures": {
+    "top": "contentcontent:block/spruce_branch_top",
+    "side": "minecraft:block/spruce_log"
+  }
+}

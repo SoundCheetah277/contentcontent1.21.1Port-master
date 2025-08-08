@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "contentcontent:chocolate"
+  },
+  "result": "contentcontent:chiseled_chocolate_egg",
+  "count": 1
+}
