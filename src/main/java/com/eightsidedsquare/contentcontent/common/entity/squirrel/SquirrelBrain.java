@@ -35,7 +35,7 @@ public class SquirrelBrain {
               ImmutableList.of(
                       new StayAboveWaterTask(0.8F),
                       new LookAroundTask(45, 90),
-                      new WanderAroundTask(),
+                      new MoveToTargetTask(),
                       new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
                       new TemptationCooldownTask(CMemoryModuleType.CALM_TOWARDS_PLAYERS_COOLDOWN),
                       makeRandomFollowTask(),

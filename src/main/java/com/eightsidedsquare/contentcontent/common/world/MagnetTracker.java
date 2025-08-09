@@ -25,8 +25,8 @@ public class MagnetTracker {
          List<Entity> magneticEntities = new ArrayList<>();
 
           for (Entity entity1 : world.iterateEntities()) {
-              if (entity1 != null && entity1.isAlive()) {
-                  for (ItemStack stack : LivingEntity.getArmorItems()) {
+              if (entity1 instanceof LivingEntity living && living.isAlive()) {
+                  for (ItemStack stack : living.getArmorItems()) {
                       if (stack.isIn(ContentItemTags.MAGNETIC_ARMOR)) {
                           magneticEntities.add(entity1);
                           break;
