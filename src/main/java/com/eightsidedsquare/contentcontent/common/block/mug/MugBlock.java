@@ -8,6 +8,11 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.component.type.PotionContentsComponent;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.component.type.PotionContentsComponent;
+import java.util.List;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -22,6 +27,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.potion.Potion;
 import org.jetbrains.annotations.Nullable;
 
 public class MugBlock extends HorizontalFacingBlock {
@@ -57,8 +63,9 @@ public class MugBlock extends HorizontalFacingBlock {
       } else if (stack.getItem() instanceof PotionItem) {
          player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
          this.setFilled(ContentBlocks.POTION_MUG, 1, state, world, pos);
-         if (world.getBlockEntity(pos) instanceof PotionMugBlockEntity blockEntity) {
-            blockEntity.addEffects(PotionContentsComponent.getPotionEffects(stack));
+         if (stack.getItem() instanceof PotionItem potionItem) {
+            List<StatusEffectInstance> effects = potionItem.getEffects(stack);
+            world.getBlockEntity(pos).addEffects(effects);
          }
 
          if (!world.isClient) {
@@ -91,7 +98,7 @@ public class MugBlock extends HorizontalFacingBlock {
 
          return ActionResult.success(world.isClient);
       } else {
-         ActionResult actionResult = super.onUse(state, world, pos, player, hand, hit);
+         ActionResult actionResult = super.onUse(state, world, pos, player, hit);
          return actionResult;
       }
    }

@@ -28,10 +28,11 @@ public class BoxingGloveItem extends Item {
    public BoxingGloveItem(Item.Settings settings) {
       super(settings);
       Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-      this.attributeModifiers = builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID,
+      builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID,
               "Weapon modifier",
               1.0,
-              EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)).build();
+              EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+      this.attributeModifiers = builder.build();
    }
    public int getColor(ItemStack stack) {
       NbtCompound display = stack.getSubNbt("display");

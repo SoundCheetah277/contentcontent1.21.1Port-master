@@ -2,6 +2,7 @@ package com.eightsidedsquare.contentcontent.common.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -50,10 +51,10 @@ public class BranchBlock extends ConnectingBlock implements Waterloggable {
          }
 
          world.setBlockState(pos, this.strippedBlock.getStateWithProperties(state), 3);
-         stack.damage(1, player, p -> p.sendToolBreakStatus(hand));
+         stack.damage(1, player, EquipmentSlot.MAINHAND);
          return ActionResult.success(world.isClient);
       } else {
-         return super.onUse(state, world, pos, player, hand, hit);
+         return super.onUse(state, world, pos, player, hit);
       }
    }
 

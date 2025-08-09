@@ -481,7 +481,7 @@ public class SquirrelEntity extends AnimalEntity implements GeoEntity {
       public PathNodeType getDefaultNodeType(BlockView world, int x, int y, int z) {
          this.pos.set(x, y, z);
          PathNodeType pathNodeType = getCommonNodeType(world, this.pos);
-         return pathNodeType == PathNodeType.LEAVES ? PathNodeType.WALKABLE : getLandNodeType(world, this.pos);
+         return pathNodeType == PathNodeType.LEAVES ? PathNodeType.WALKABLE : getLandNodeType(context, this.pos);
       }
    }
 }
