@@ -14,7 +14,10 @@ import java.util.Map;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents.Modify;
+import net.fabricmc.fabric.api.loot.v3.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -24,11 +27,14 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.*;
 import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.recipe.RecipeSerializer;
@@ -36,6 +42,7 @@ import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -253,21 +260,22 @@ public class ContentItems {
       FuelRegistry.INSTANCE.add(ContentItemTags.BRANCHES_THAT_BURN, 150);
       UniformLootNumberProvider lootTableRange = UniformLootNumberProvider.create(1.0F, 1.0F);
       LootCondition chanceLootCondition = RandomChanceLootCondition.builder(0.05F).build();
-      LootTableEvents.MODIFY
-              .register(
-                      (Modify)(resourceManager, lootManager, id, supplier, setter) -> {
+      LootTableEvents.MODIFY.register(
+                      (resourceManager, lootManager, id, tableBuilder, source) -> {
                          if (LootTables.ABANDONED_MINESHAFT_CHEST.equals(id) || LootTables.BURIED_TREASURE_CHEST.equals(id) || LootTables.SIMPLE_DUNGEON_CHEST.equals(id) || LootTables.ANCIENT_CITY_CHEST.equals(id)) {
                             LootPool lootPool = LootPool.builder()
                                     .rolls(lootTableRange)
                                     .conditionally(chanceLootCondition)
                                     .with(ItemEntry.builder(FOLLY_SEED).build())
-                                    .build();
-                            supplier.pool(lootPool);
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f))).build();
+                            tableBuilder.pool(lootPool);
                          }
                       }
               );
-      BrewingRecipeRegistry.Builder.registerPotionRecipe(Potions.AWKWARD, ACORN, ContentPotions.RUSTLING);
-      BrewingRecipeRegistry.Builder.registerPotionRecipe(ContentPotions.RUSTLING, Items.REDSTONE, ContentPotions.LONG_RUSTLING);
+      FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+         builder.registerPotionRecipe(Potions.AWKWARD, ACORN, (RegistryEntry<Potion>) ContentPotions.RUSTLING);
+         builder.registerPotionRecipe((RegistryEntry<Potion>) ContentPotions.RUSTLING, Items.REDSTONE, (RegistryEntry<Potion>) ContentPotions.LONG_RUSTLING);
+      });
       registerDispenserBehaviors();
    }
 
@@ -281,8 +289,8 @@ public class ContentItems {
               Items.GOAT_HORN,
               new FallibleItemDispenserBehavior() {
                  protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
-                    Direction d = (Direction)world.getBlockState().get(DispenserBlock.FACING);
                     ServerWorld world = pointer.world();
+                    Direction d = (Direction)world.getBlockState().get(DispenserBlock.FACING);
                     BlockState state = world.getBlockState(pointer.pos().offset(d));
                     if (state.isAir() || state.isOf(Blocks.NOTE_BLOCK)) {
                        float pitch = state.isOf(Blocks.NOTE_BLOCK)
