@@ -59,7 +59,7 @@ public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
       int lootDigsLeft = brain.getOptionalMemory(CMemoryModuleType.LOOT_DIGS_LEFT).orElse(0);
 
       if (mainHandStack.isFood()) {
-         int hunger = mainHandStack.getItem().getFoodComponent().getHunger();
+         int hunger = mainHandStack.getItem().getFoodComponent().nutrition();
          entity.heal(hunger);
          brain.remember(CMemoryModuleType.LOOT_DIGS_LEFT, Math.min(lootDigsLeft + hunger, 10));
       }

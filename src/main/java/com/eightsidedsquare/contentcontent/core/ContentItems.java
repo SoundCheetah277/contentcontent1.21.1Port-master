@@ -57,7 +57,7 @@ public class ContentItems {
    public static final Item SQUIRREL_SPAWN_EGG = create(
            "squirrel_spawn_egg", new SpawnEggItem(ContentEntities.SQUIRREL, 9011576, 8409922, new Item.Settings())
    );
-   public static final Item ACORN = create("acorn", new Item(new Item.Settings()));
+   public static final Item ACORN = create("acorn", new Item(new Item.Settings().food(new FoodComponent.Builder().saturationModifier(.3f).nutrition(4).build())));
    public static final Item IRON_SCAFFOLDING = create(
            "iron_scaffolding", new ScaffoldingItem(ContentBlocks.IRON_SCAFFOLDING, new Item.Settings())
    );
