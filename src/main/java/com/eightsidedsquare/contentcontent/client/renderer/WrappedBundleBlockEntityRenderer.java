@@ -37,7 +37,6 @@ public class WrappedBundleBlockEntityRenderer extends GeoBlockRenderer<WrappedBu
 
       matrices.pop();
    }
-
    @Override
    public void renderRecursively(MatrixStack matrices, WrappedBundleBlockEntity animatable, GeoBone bone,
                                  RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer,

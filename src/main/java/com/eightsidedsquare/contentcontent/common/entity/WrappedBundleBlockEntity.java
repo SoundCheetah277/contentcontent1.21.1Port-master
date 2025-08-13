@@ -6,12 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
@@ -21,20 +20,16 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.RawAnimation;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import net.minecraft.registry.RegistryWrapper;
+
+import java.util.Optional;
 
 public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEntity {
    private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
@@ -73,7 +68,6 @@ public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEnt
    public float getYaw() {
       return this.yaw;
    }
-
    public ItemStack getBundle() {
       return this.bundle;
    }
@@ -81,7 +75,6 @@ public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEnt
    public void setBundle(ItemStack bundle) {
       this.bundle = bundle;
    }
-
    public int getColor() {
       return this.color;
    }
@@ -90,22 +83,36 @@ public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEnt
       this.color = color;
    }
 
-   protected void writeNbt(NbtCompound nbt) {
+   @Override
+   protected void saveAdditional(NbtCompound nbt) {
       nbt.putInt("OpenTicks", this.openTicks);
       nbt.putInt("Color", this.color);
       nbt.putFloat("Yaw", this.yaw);
-      nbt.put("Bundle", this.bundle.writeNbt(new NbtCompound()));
-   }
 
-   public void readNbt(NbtCompound nbt) {
+      if (!this.bundle.isEmpty()) {
+         nbt.put("Bundle", this.bundle.encode(this.getWorld().getRegistryManager()));
+      }
+   }
+   @Override
+   public void load(NbtCompound nbt) {
       this.openTicks = nbt.getInt("OpenTicks");
       this.color = nbt.getInt("Color");
       this.yaw = nbt.getFloat("Yaw");
-      this.bundle = nbt.contains("Bundle", 10) ? ItemStack.fromNbt(nbt.getCompound("Bundle")) : new ItemStack(Items.BUNDLE);
+
+      if (nbt.contains("Bundle", NbtElement.COMPOUND_TYPE)) {
+         // 1.21+ replacement for fromNbtOrEmpty()
+         this.bundle = ItemStack.fromNbt(
+                 this.getWorld().getRegistryManager(),
+                 nbt.getCompound("Bundle")
+         );
+      } else {
+         this.bundle = ItemStack.EMPTY;
+      }
    }
 
+
    public void registerControllers(AnimatableManager.ControllerRegistrar registrar) {
-      registrar.add(new AnimationController<GeoAnimatable>(this, "controller", 0, this::controller));
+      registrar.add(new AnimationController<>(this, "controller", 0, this::controller));
    }
 
    @Override
@@ -135,7 +142,7 @@ public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEnt
    }
 
    public NbtCompound toInitialChunkDataNbt() {
-      return this.createNbt();
+      return this.createNbt(world.getRegistryManager());
    }
 
    @Nullable
