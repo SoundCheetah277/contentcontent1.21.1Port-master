@@ -15,6 +15,8 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -86,8 +88,7 @@ public class SquirrelDigTask extends MultiTickTask<SquirrelEntity> {
 
       int lootDigsLeft = entity.getBrain().getOptionalMemory(CMemoryModuleType.LOOT_DIGS_LEFT).orElse(0);
       if (this.runTime >= 90 && lootDigsLeft > 0) {
-         LootTable lootTable = world.getServer().getLootManager().getLootTable(
-                 Identifier.of("contentcontent", "gameplay/squirrel_dig"));
+         LootTable lootTable = world.getServer().getRegistryManager().get(RegistryKeys.LOOT_TABLE).get(Identifier.of("contentcontent", "gameplay/squirrel_dig"));
 
          LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder(world)
                  .add(LootContextParameters.ORIGIN, entity.getPos())

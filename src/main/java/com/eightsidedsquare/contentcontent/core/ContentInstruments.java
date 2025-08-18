@@ -109,7 +109,7 @@ public class ContentInstruments {
    }
 
    public static Optional<RegistryEntry.Reference<Instrument>> getInstrument(ItemStack stack) {
-      NbtCompound nbtCompound = stack.getNbt();
+      NbtCompound nbtCompound = stack.get();
       Identifier identifier;
       if (nbtCompound != null && (identifier = Identifier.tryParse(nbtCompound.getString("instrument"))) != null) {
          return Registries.INSTRUMENT.getEntry(RegistryKey.of(RegistryKeys.INSTRUMENT, identifier));

@@ -8,8 +8,10 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -18,6 +20,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -119,13 +122,12 @@ public abstract class IgnitableBlock extends Block implements Waterloggable {
 
                return ActionResult.success(world.isClient);
             }
-
-            if (stack.getItem() instanceof FlintAndSteelItem || EnchantmentHelper.get(stack).containsKey(Enchantments.FIRE_ASPECT)) {
+            if (stack.getItem() instanceof FlintAndSteelItem ||
+                    hasEnchantment(stack, Enchantments.FIRE_ASPECT)) {
                setLit(world, state, pos, true);
                world.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
                if (!player.isCreative()) {
-                  stack.damage(1, player, p -> p.sendToolBreakStatus(hand));
-               }
+                  stack.damage(1, player, hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);               }
 
                return ActionResult.success(world.isClient);
             }
@@ -133,13 +135,17 @@ public abstract class IgnitableBlock extends Block implements Waterloggable {
       } else if (this.handExtinguishable && stack.isEmpty() || stack.getItem() instanceof ShovelItem) {
          this.extinguish(player, state, world, pos);
          if (!player.isCreative()) {
-            stack.damage(1, player, p -> p.sendToolBreakStatus(hand));
-         }
+            stack.damage(1, player, hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);         }
 
          return ActionResult.success(world.isClient);
       }
 
       return ActionResult.PASS;
+   }
+
+   private boolean hasEnchantment(ItemStack stack, RegistryKey<Enchantment> fireAspect) {
+      //Need to finish
+       return false;
    }
 
    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {

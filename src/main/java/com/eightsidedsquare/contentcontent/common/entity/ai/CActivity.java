@@ -6,6 +6,7 @@
 package com.eightsidedsquare.contentcontent.common.entity.ai;
 
 import net.minecraft.entity.ai.brain.Activity;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class CActivity {
@@ -16,6 +17,6 @@ public class CActivity {
 
     private static Activity register(String id) {
         id = "contentcontent:" + id;
-        return (Activity)Registry.register(Registry.field_18796, id, new Activity(id));
+        return (Activity)Registry.register(Registries.ACTIVITY, id, new Activity(id));
     }
 }

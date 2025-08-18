@@ -3,6 +3,8 @@ package com.eightsidedsquare.contentcontent.common.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
+import com.mojang.serialization.Codec;
+import net.minecraft.component.ComponentType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -14,29 +16,36 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class BoxingGloveItem extends Item {
    private static final int DEFAULT_COLOR = 0xA06540;
    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
-
-   public BoxingGloveItem(Item.Settings settings) {
+   public class ContentContentComponents {
+      public static final ComponentType<Integer> COLOR = Registry.register(
+              Registries.DATA_COMPONENT_TYPE,
+              Identifier.of("contentcontent", "color"),
+              ComponentType.<Integer>builder().codec(Codec.INT).build()
+      );
+   }   public BoxingGloveItem(Item.Settings settings) {
       super(settings);
       Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-      builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID,
-              "Weapon modifier",
+      builder.put(EntityAttributes.GENERIC_ATTACK_SPEED.value(), new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID,
               1.0,
               EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
       this.attributeModifiers = builder.build();
    }
    public int getColor(ItemStack stack) {
-      NbtCompound display = stack.getSubNbt("display");
-      return (display) != null && nbtCompound.contains("color", NbtElement.INT_TYPE) ? display.getInt("color") : 14294558;
+      Integer color = stack.get(ContentContentComponents.COLOR); // Can be null
+      return color != null ? color : DEFAULT_COLOR;
    }
 
    public Object getAttributeModifiers(EquipmentSlot slot) {

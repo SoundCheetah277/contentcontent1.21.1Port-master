@@ -23,7 +23,7 @@ public class FoodItemEntitySensor extends Sensor<AnimalEntity> {
       );
       list.sort(Comparator.comparingDouble(entity::squaredDistanceTo));
       brain.remember(CMemoryModuleType.NEAREST_FOOD_ITEM_ENTITY, list.stream().filter(entity::canSee).findFirst());
-      if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && entity.getMainHandStack().isFood()) {
+      if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && FoodComponent !=null) {
          brain.remember(CMemoryModuleType.IS_EATING, true);
       }
    }

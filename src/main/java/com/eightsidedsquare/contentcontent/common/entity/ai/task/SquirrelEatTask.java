@@ -3,6 +3,7 @@ package com.eightsidedsquare.contentcontent.common.entity.ai.task;
 import com.eightsidedsquare.contentcontent.common.entity.ai.CMemoryModuleType;
 import com.eightsidedsquare.contentcontent.common.entity.squirrel.SquirrelEntity;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
@@ -22,18 +23,20 @@ public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
 
    @Override
    protected boolean shouldRun(ServerWorld world, SquirrelEntity entity) {
+      ItemStack mainHand = entity.getMainHandStack();
+      FoodComponent food = mainHand.getItem().getFoodProperties(mainHand, entity);
       return !entity.isDigging()
               && !entity.isClimbing()
-              && (entity.getMainHandStack().isFood() || entity.isBreedingItem(entity.getMainHandStack()));
-   }
+              && (food != null || entity.isBreedingItem(mainHand));   }
 
    @Override
    protected boolean shouldKeepRunning(ServerWorld world, SquirrelEntity entity, long time) {
+      ItemStack mainHand = entity.getMainHandStack();
+      FoodComponent food = mainHand.getItem().getFoodProperties(mainHand, entity);
       return !entity.isDigging()
               && !entity.isClimbing()
               && entity.isEating()
-              && (entity.getMainHandStack().isFood() || entity.isBreedingItem(entity.getMainHandStack()));
-   }
+              && (food != null || entity.isBreedingItem(mainHand));   }
 
    @Override
    protected void run(ServerWorld world, SquirrelEntity entity, long time) {
@@ -56,10 +59,11 @@ public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
       entity.setEating(false);
 
       ItemStack mainHandStack = entity.getMainHandStack();
+      FoodComponent food = mainHandStack.getItem().getFoodComponent();
       int lootDigsLeft = brain.getOptionalMemory(CMemoryModuleType.LOOT_DIGS_LEFT).orElse(0);
 
-      if (mainHandStack.isFood()) {
-         int hunger = mainHandStack.getItem().getFoodComponent().nutrition();
+      if (food != null) {
+         int hunger = food.nutrition();
          entity.heal(hunger);
          brain.remember(CMemoryModuleType.LOOT_DIGS_LEFT, Math.min(lootDigsLeft + hunger, 10));
       }

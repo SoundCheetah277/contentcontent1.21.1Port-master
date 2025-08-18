@@ -118,8 +118,8 @@ public class ContentClient implements ClientModInitializer {
    }
 
    private static int getWrappedBundleColor(ItemStack stack, int tintIndex) {
-      if (tintIndex > 0 && stack.hasNbt() && stack.getNbt().contains("color", NbtElement.INT_TYPE)) {
-         return stack.getNbt().getInt("color");
+      if (tintIndex > 0 && stack.hasNbt() && stack.get().contains("color", NbtElement.INT_TYPE)) {
+         return stack.get().getInt("color");
       }
       return -1; // No tint if no color tag or tintIndex <= 0
    }

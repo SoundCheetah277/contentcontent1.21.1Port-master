@@ -17,6 +17,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.component.type.PotionContentsComponent;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
 import org.jetbrains.annotations.Nullable;
@@ -30,7 +31,7 @@ public class PotionMugBlockEntity extends BlockEntity {
    }
 
    public NbtCompound toInitialChunkDataNbt() {
-      return this.createNbt();
+      return this.createNbt(RegistryWrapper.WrapperLookup);
    }
 
    @Nullable

@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
@@ -408,7 +409,7 @@ public class SquirrelEntity extends AnimalEntity implements GeoEntity {
    }
 
    public boolean canPickupItem(ItemStack stack) {
-      return this.canPickUpLoot() && this.getMainHandStack().isEmpty() && stack.isFood();
+      return this.canPickUpLoot() && this.getMainHandStack().isEmpty() && stack.contains(DataComponentTypes.FOOD);
    }
 
    public boolean canPickUpLoot() {
