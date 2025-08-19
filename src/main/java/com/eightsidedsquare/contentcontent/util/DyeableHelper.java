@@ -1,5 +1,6 @@
 package com.eightsidedsquare.contentcontent.util;
 
+import com.eightsidedsquare.contentcontent.common.item.BoxingGloveItem;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -13,28 +14,22 @@ public final class DyeableHelper {
     private DyeableHelper() {} // prevent instantiation
 
     public static int getColor(ItemStack stack) {
-        NbtCompound display = stack.getSubNbt("display");
-        return (display != null && display.contains("color", NbtElement.INT_TYPE))
-                ? display.getInt("color")
-                : DEFAULT_COLOR;
+        Integer col = stack.get(BoxingGloveItem.ContentContentComponents.COLOR);
+        return col != null ? col : DEFAULT_COLOR;
     }
 
+
     public static void setColor(ItemStack stack, int color) {
-        stack.getOrCreateSubNbt("display").putInt("color", color);
+        stack.set(BoxingGloveItem.ContentContentComponents.COLOR, color);
     }
 
     public static boolean hasColor(ItemStack stack) {
-        NbtCompound display = stack.getSubNbt("display");
-        return display != null && display.contains("color", NbtElement.INT_TYPE);
+        return stack.get(BoxingGloveItem.ContentContentComponents.COLOR) != null;
     }
 
     public static void removeColor(ItemStack stack) {
-        NbtCompound display = stack.getSubNbt("display");
-        if (display != null && display.contains("color")) {
-            display.remove("color");
-        }
+        stack.remove(BoxingGloveItem.ContentContentComponents.COLOR);
     }
-
     public static ItemStack blendAndSetColor(ItemStack result, List<DyeItem> list) {
         return result;
     }

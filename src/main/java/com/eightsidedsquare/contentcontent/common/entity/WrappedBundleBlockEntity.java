@@ -14,6 +14,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
@@ -82,33 +83,34 @@ public class WrappedBundleBlockEntity extends BlockEntity implements GeoBlockEnt
    public void setColor(int color) {
       this.color = color;
    }
-
    @Override
-   protected void saveAdditional(NbtCompound nbt) {
+   protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryManager) {
+      super.writeNbt(nbt, registryManager);
+
       nbt.putInt("OpenTicks", this.openTicks);
       nbt.putInt("Color", this.color);
       nbt.putFloat("Yaw", this.yaw);
 
       if (!this.bundle.isEmpty()) {
-         nbt.put("Bundle", this.bundle.encode(this.getWorld().getRegistryManager()));
+         nbt.put("Bundle", this.bundle.encode(registryManager));
       }
    }
+
    @Override
-   public void load(NbtCompound nbt) {
+   public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryManager) {
+      super.readNbt(nbt, registryManager);
+
       this.openTicks = nbt.getInt("OpenTicks");
       this.color = nbt.getInt("Color");
       this.yaw = nbt.getFloat("Yaw");
 
       if (nbt.contains("Bundle", NbtElement.COMPOUND_TYPE)) {
-         // 1.21+ replacement for fromNbtOrEmpty()
-         this.bundle = ItemStack.fromNbt(
-                 this.getWorld().getRegistryManager(),
-                 nbt.getCompound("Bundle")
-         );
+         this.bundle = ItemStack.fromNbt(registryManager, nbt.getCompound("Bundle")).orElse(ItemStack.EMPTY);
       } else {
          this.bundle = ItemStack.EMPTY;
       }
    }
+
 
 
    public void registerControllers(AnimatableManager.ControllerRegistrar registrar) {

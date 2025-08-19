@@ -5,9 +5,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,16 +34,27 @@ public class DisplayCaseBlockEntity extends BlockEntity {
       return this.stack != null ? this.stack : ItemStack.EMPTY;
    }
 
-   protected void writeNbt(NbtCompound nbt) {
-      nbt.put("Item", this.getStack().writeNbt(new NbtCompound()));
+   @Override
+   protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+      super.writeNbt(nbt, registryLookup);
+      if (!this.getStack().isEmpty()) {
+         // Save the item with registry reference info
+         nbt.put("Item", this.getStack().encode(registryLookup));
+      }
    }
 
-   public void readNbt(NbtCompound nbt) {
-      this.setStack(ItemStack.fromNbt(nbt.getCompound("Item")));
+   @Override
+   public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+      super.readNbt(nbt, registryLookup);
+      if (nbt.contains("Item", NbtElement.COMPOUND_TYPE)) {
+         this.setStack(ItemStack.fromNbt(registryLookup, nbt.getCompound("Item")).orElse(ItemStack.EMPTY));
+      } else {
+         this.setStack(ItemStack.EMPTY);
+      }
    }
-
-   public NbtCompound toInitialChunkDataNbt() {
-      return this.createNbt();
+   @Override
+   public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+      return this.createNbt(registryLookup);
    }
 
    @Nullable
