@@ -58,7 +58,7 @@ public class MagnetTracker {
                   if (pos == null) {
                      MagnetTargetClearS2CPacket.send(player);
                   } else {
-                     MagnetTargetSetS2CPacket.send(player, GlobalPos.create(world.getRegistryKey(), pos));
+                      MagnetTargetSetS2CPacket.send(player, GlobalPos.create(world.getRegistryKey(), pos));
                   }
                }
             }

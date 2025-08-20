@@ -23,6 +23,7 @@ import net.minecraft.client.item.CompassAnglePredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
@@ -109,20 +110,20 @@ public class ContentClient implements ClientModInitializer {
       EntityRendererRegistry.register(ContentEntities.SQUIRREL, SquirrelEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.DISPLAY_CASE, DisplayCaseBlockEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.WRAPPED_BUNDLE, WrappedBundleBlockEntityRenderer::new);
-      ClientPlayNetworking.registerGlobalReceiver(
-              MagnetTargetSetS2CPacket.ID, MagnetTargetSetS2CPacket::handler
-      );
-      ClientPlayNetworking.registerGlobalReceiver(
-              MagnetTargetClearS2CPacket.ID, MagnetTargetClearS2CPacket::handler
-      );
+      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetSetS2CPacket.ID, MagnetTargetSetS2CPacket::handler);
+      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetClearS2CPacket.ID, MagnetTargetClearS2CPacket::handler);
    }
 
    private static int getWrappedBundleColor(ItemStack stack, int tintIndex) {
-      if (tintIndex > 0 && stack.hasNbt() && stack.get().contains("color", NbtElement.INT_TYPE)) {
-         return stack.get().getInt("color");
+      if (tintIndex > 0) {
+         NbtCompound nbt = stack.getNbt();
+         if (nbt != null && nbt.contains("color", NbtElement.INT_TYPE)) {
+            return nbt.getInt("color");
+         }
       }
       return -1; // No tint if no color tag or tintIndex <= 0
    }
+
 
    private static int getBoxingGloveColor(ItemStack stack, int tintIndex) {
       BoxingGloveItem item = (BoxingGloveItem) stack.getItem();
