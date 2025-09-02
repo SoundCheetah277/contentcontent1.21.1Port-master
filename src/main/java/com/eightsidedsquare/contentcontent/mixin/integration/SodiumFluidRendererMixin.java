@@ -21,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
    remap = false
 )
 public class SodiumFluidRendererMixin {
-   @Shadow
    @Final
    private BlockPos.Mutable scratchPos;
 

@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 public class SuspiciousDirtRecipe extends SpecialCraftingRecipe {
    public SuspiciousDirtRecipe(CraftingRecipeCategory craftingRecipeCategory) {
-      super(identifier, CraftingRecipeCategory.MISC);
+      super(CraftingRecipeCategory.MISC);
    }
 
    private boolean matchesRecipe(RecipeInputInventory inventory) {
@@ -40,7 +40,7 @@ public class SuspiciousDirtRecipe extends SpecialCraftingRecipe {
       ItemStack loot = inventory.getStack(4).copy();
       if (this.matchesRecipe(inventory) && !loot.isEmpty()) {
          loot.setCount(1);
-         loot.getOrCreateNbt().put("Enchantments", new NbtList());
+         loot.getComponents().put("Enchantments", new NbtList());
          NbtCompound nbt = new NbtCompound();
          nbt.put("item", loot.writeNbt(new NbtCompound()));
          BlockItem.setBlockEntityNbt(output, ContentEntities.BRUSHABLE_BLOCK, nbt);

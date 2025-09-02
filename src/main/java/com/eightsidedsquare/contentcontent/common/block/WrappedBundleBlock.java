@@ -77,7 +77,7 @@ public class WrappedBundleBlock extends BlockWithEntity implements Waterloggable
          world.getBlockEntity(pos, ContentEntities.WRAPPED_BUNDLE).ifPresent(entity -> {
             entity.setYaw(player.isSneaking() ? Math.round(angle / 22.5F) * 22.5F : angle);
             ItemStack stack = new ItemStack(Items.BUNDLE);
-            stack.set(itemStack.getOrCreateNbt());
+            stack.set(itemStack.getComponents());
             entity.setBundle(stack);
             entity.setColor(DyeableHelper.getColor(itemStack));
          });

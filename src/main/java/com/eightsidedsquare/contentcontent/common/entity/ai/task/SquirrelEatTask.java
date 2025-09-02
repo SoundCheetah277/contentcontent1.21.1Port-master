@@ -3,6 +3,7 @@ package com.eightsidedsquare.contentcontent.common.entity.ai.task;
 import com.eightsidedsquare.contentcontent.common.entity.ai.CMemoryModuleType;
 import com.eightsidedsquare.contentcontent.common.entity.squirrel.SquirrelEntity;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
@@ -10,6 +11,7 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.task.MultiTickTask;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
@@ -23,20 +25,20 @@ public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
 
    @Override
    protected boolean shouldRun(ServerWorld world, SquirrelEntity entity) {
-      ItemStack mainHand = entity.getMainHandStack();
-      FoodComponent food = mainHand.getItem().getFoodProperties(mainHand, entity);
+      ItemStack mainHandStack = entity.getStackInHand(Hand.MAIN_HAND);
+      FoodComponent food = mainHandStack.get(DataComponentTypes.FOOD);
       return !entity.isDigging()
               && !entity.isClimbing()
-              && (food != null || entity.isBreedingItem(mainHand));   }
+              && (food != null || entity.isBreedingItem(mainHandStack));   }
 
    @Override
    protected boolean shouldKeepRunning(ServerWorld world, SquirrelEntity entity, long time) {
-      ItemStack mainHand = entity.getMainHandStack();
-      FoodComponent food = mainHand.getItem().getFoodProperties(mainHand, entity);
+      ItemStack mainHandStack = entity.getStackInHand(Hand.MAIN_HAND);
+      FoodComponent food = mainHandStack.get(DataComponentTypes.FOOD);
       return !entity.isDigging()
               && !entity.isClimbing()
               && entity.isEating()
-              && (food != null || entity.isBreedingItem(mainHand));   }
+              && (food != null || entity.isBreedingItem(mainHandStack));   }
 
    @Override
    protected void run(ServerWorld world, SquirrelEntity entity, long time) {
@@ -53,13 +55,13 @@ public class SquirrelEatTask extends MultiTickTask<SquirrelEntity> {
 
    @Override
    protected void finishRunning(ServerWorld world, SquirrelEntity entity, long time) {
+      ItemStack mainHandStack = entity.getStackInHand(Hand.MAIN_HAND);
       var brain = entity.getBrain();
       brain.remember(CMemoryModuleType.ATE_RECENTLY, true, UniformIntProvider.create(400, 800).get(entity.getRandom()));
       brain.forget(CMemoryModuleType.IS_EATING);
       entity.setEating(false);
 
-      ItemStack mainHandStack = entity.getMainHandStack();
-      FoodComponent food = mainHandStack.getItem().getFoodComponent();
+      FoodComponent food = mainHandStack.get(DataComponentTypes.FOOD);
       int lootDigsLeft = brain.getOptionalMemory(CMemoryModuleType.LOOT_DIGS_LEFT).orElse(0);
 
       if (food != null) {

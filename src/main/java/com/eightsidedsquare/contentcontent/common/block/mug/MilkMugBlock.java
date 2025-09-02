@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
@@ -45,7 +46,11 @@ public class MilkMugBlock extends FilledMugBlock {
          player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
          this.setFilled(ContentBlocks.PILK_MUG, level + 1, state, world, pos);
          if (world.getBlockEntity(pos) instanceof PotionMugBlockEntity blockEntity) {
-            blockEntity.addEffects(PotionContentsComponent.getPotionEffects(stack));
+            PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
+            if (potionContents != null) {
+               // You'll need to implement addEffects in your block entity
+               ((PotionMugBlockEntity)blockEntity).addEffects(potionContents.customEffects());
+            }
          }
 
          player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));

@@ -64,8 +64,10 @@ public class MugBlock extends HorizontalFacingBlock {
          player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
          this.setFilled(ContentBlocks.POTION_MUG, 1, state, world, pos);
          if (stack.getItem() instanceof PotionItem potionItem) {
-            List<StatusEffectInstance> effects = potionItem.getEffects(stack);
-            world.getBlockEntity(pos).addEffects(effects);
+            PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
+            List<StatusEffectInstance> effects = potionContents != null ?
+                    potionContents.customEffects() : List.of();
+            //world.getBlockEntity(pos).addEffects(effects);
          }
 
          if (!world.isClient) {

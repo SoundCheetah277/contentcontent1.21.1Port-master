@@ -1,5 +1,6 @@
 package com.eightsidedsquare.contentcontent.core;
 
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Instrument;
 import net.minecraft.item.Instruments;
 import net.minecraft.item.ItemStack;
@@ -109,10 +110,10 @@ public class ContentInstruments {
    }
 
    public static Optional<RegistryEntry.Reference<Instrument>> getInstrument(ItemStack stack) {
-      NbtCompound nbtCompound = stack.get();
+      var instrumentEntry = stack.get(DataComponentTypes.INSTRUMENT);
       Identifier identifier;
-      if (nbtCompound != null && (identifier = Identifier.tryParse(nbtCompound.getString("instrument"))) != null) {
-         return Registries.INSTRUMENT.getEntry(RegistryKey.of(RegistryKeys.INSTRUMENT, identifier));
+      if (instrumentEntry != null) {
+         return Optional.of((RegistryEntry.Reference<Instrument>) instrumentEntry);
       } else {
          Iterator<RegistryEntry<Instrument>> iterator = Registries.INSTRUMENT.iterateEntries(InstrumentTags.GOAT_HORNS).iterator();
          return iterator.hasNext() ? Optional.of((RegistryEntry.Reference<Instrument>) iterator.next()) : Optional.empty();

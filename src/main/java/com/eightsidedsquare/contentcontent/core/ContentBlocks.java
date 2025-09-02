@@ -375,9 +375,8 @@ public class ContentBlocks {
    public static final Block FOLLY_PRESSURE_PLATE = create(
            "folly_pressure_plate",
            new PressurePlateBlock(
-                   PressurePlateBlock.ActivationRule.EVERYTHING,
-                   AbstractBlock.Settings.copy(Blocks.ACACIA_PRESSURE_PLATE).mapColor(MapColor.PINK),
-                   BlockSetType.ACACIA
+                   BlockSetType.ACACIA, // Use BlockSetType instead of ActivationRule
+                   AbstractBlock.Settings.copy(Blocks.ACACIA_PRESSURE_PLATE).mapColor(MapColor.PINK)
            ),
            ItemGroups.REDSTONE
    );
@@ -417,7 +416,11 @@ public class ContentBlocks {
            "suspicious_dirt",
            new BrushableBlock(
                    Blocks.DIRT,
-                   FabricBlockSettings.create().mapColor(MapColor.DIRT_BROWN).strength(0.25F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.SUSPICIOUS_GRAVEL),
+                   AbstractBlock.Settings.copy(Blocks.SUSPICIOUS_GRAVEL)
+                           .mapColor(MapColor.DIRT_BROWN)
+                           .strength(0.25F)
+                           .pistonBehavior(PistonBehavior.DESTROY)
+                           .sounds(BlockSoundGroup.SUSPICIOUS_GRAVEL),
                    SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL,
                    SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL_COMPLETE
            ),

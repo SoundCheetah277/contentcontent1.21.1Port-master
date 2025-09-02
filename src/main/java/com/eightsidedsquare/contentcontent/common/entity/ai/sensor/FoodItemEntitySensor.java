@@ -2,6 +2,8 @@ package com.eightsidedsquare.contentcontent.common.entity.ai.sensor;
 
 import com.eightsidedsquare.contentcontent.common.entity.ai.CMemoryModuleType;
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
@@ -23,7 +25,8 @@ public class FoodItemEntitySensor extends Sensor<AnimalEntity> {
       );
       list.sort(Comparator.comparingDouble(entity::squaredDistanceTo));
       brain.remember(CMemoryModuleType.NEAREST_FOOD_ITEM_ENTITY, list.stream().filter(entity::canSee).findFirst());
-      if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && FoodComponent !=null) {
+      FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
+      if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && foodComponent != null) {
          brain.remember(CMemoryModuleType.IS_EATING, true);
       }
    }

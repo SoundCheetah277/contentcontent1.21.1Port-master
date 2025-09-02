@@ -11,8 +11,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.sound.SoundEvent;
@@ -93,7 +95,7 @@ public class BrazierBlock extends IgnitableBlock {
    }
 
    @Override
-   protected ImmutableList<Triplet<SimpleParticleType, Float, Float>> getParticles(BlockState state) {
+   protected ImmutableList<Triplet<ParticleType, Float, Float>> getParticles(BlockState state) {
       return ImmutableList.of(new Triplet(ParticleTypes.CAMPFIRE_COSY_SMOKE, 0.4F, 0.07F), new Triplet(ContentClient.EMBER, 1.0F, 0.0F));
    }
 
@@ -113,7 +115,7 @@ public class BrazierBlock extends IgnitableBlock {
       if (!entity.isFireImmune()
               && state.get(LIT)
               && entity instanceof LivingEntity
-              && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)
+              && !EnchantmentHelper.hasEnchantments(((LivingEntity)entity).getEquippedStack(EquipmentSlot.FEET))
               && entity.getY() > pos.getY() + 0.4) {
          entity.damage(world.getDamageSources().inFire(), this.getDamage());
       }

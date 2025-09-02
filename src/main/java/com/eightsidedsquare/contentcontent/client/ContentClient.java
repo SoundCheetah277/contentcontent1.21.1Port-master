@@ -110,15 +110,15 @@ public class ContentClient implements ClientModInitializer {
       EntityRendererRegistry.register(ContentEntities.SQUIRREL, SquirrelEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.DISPLAY_CASE, DisplayCaseBlockEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.WRAPPED_BUNDLE, WrappedBundleBlockEntityRenderer::new);
-      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetSetS2CPacket.ID, MagnetTargetSetS2CPacket::handler);
-      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetClearS2CPacket.ID, MagnetTargetClearS2CPacket::handler);
+      //ClientPlayNetworking.registerGlobalReceiver(MagnetTargetSetS2CPacket.ID, MagnetTargetSetS2CPacket::handler);
+      //ClientPlayNetworking.registerGlobalReceiver(MagnetTargetClearS2CPacket.ID, MagnetTargetClearS2CPacket::handler);
    }
 
    private static int getWrappedBundleColor(ItemStack stack, int tintIndex) {
       if (tintIndex > 0) {
-         NbtCompound nbt = stack.getNbt();
-         if (nbt != null && nbt.contains("color", NbtElement.INT_TYPE)) {
-            return nbt.getInt("color");
+         Integer color = stack.get(BoxingGloveItem.ContentContentComponents.COLOR);
+         if (color != null) {
+            return color;
          }
       }
       return -1; // No tint if no color tag or tintIndex <= 0

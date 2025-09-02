@@ -2,6 +2,7 @@ package com.eightsidedsquare.contentcontent.common.item;
 
 import com.eightsidedsquare.contentcontent.core.ContentInstruments;
 import com.eightsidedsquare.contentcontent.core.ContentItems;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.Instrument;
 import net.minecraft.item.ItemStack;
@@ -11,9 +12,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 
@@ -21,7 +20,7 @@ import java.util.Optional;
 
 public class CopperHornRecipe extends SpecialCraftingRecipe {
    public CopperHornRecipe(CraftingRecipeCategory craftingRecipeCategory) {
-      super(identifier, craftingRecipeCategory);
+      super(craftingRecipeCategory);
    }
 
    public boolean matches(RecipeInputInventory inventory, World world) {
@@ -53,10 +52,10 @@ public class CopperHornRecipe extends SpecialCraftingRecipe {
               ContentInstruments.getCraftedCopperHorn(goatHornInstrument);
 
       ItemStack result = getOutput();
-      NbtCompound nbt = new NbtCompound();
-      nbt.putString("instrument",
-              Registries.INSTRUMENT.getId(copperHornInstrument.melody).toString());
-      result.setNbt(nbt);
+      RegistryEntry<Instrument> instrumentEntry = Registries.INSTRUMENT.getEntry(copperHornInstrument.melody);
+
+      result.set(DataComponentTypes.INSTRUMENT, instrumentEntry);
+
       return result;
    }
 

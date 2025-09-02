@@ -30,8 +30,8 @@ public class PotionMugBlockEntity extends BlockEntity {
       super(ContentEntities.POTION_MUG, pos, state);
    }
 
-   public NbtCompound toInitialChunkDataNbt() {
-      return this.createNbt(RegistryWrapper.WrapperLookup);
+   public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+      return this.createNbt(registryLookup);
    }
 
    @Nullable
@@ -39,8 +39,8 @@ public class PotionMugBlockEntity extends BlockEntity {
       return BlockEntityUpdateS2CPacket.create(this);
    }
 
-   protected void writeNbt(NbtCompound nbt) {
-      super.writeNbt(nbt);
+   protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+      super.writeNbt(nbt, registryLookup);
       NbtList nbtList = new NbtList();
       if (this.effects != null && !this.effects.isEmpty()) {
          for (StatusEffectInstance effect : this.effects) {
@@ -51,10 +51,14 @@ public class PotionMugBlockEntity extends BlockEntity {
       nbt.put("CustomPotionEffects", nbtList);
    }
 
-   public void readNbt(NbtCompound nbt) {
-      super.readNbt(nbt);
+   @Override
+   protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+      super.readNbt(nbt, registryLookup);
       this.effects = new LinkedList<>();
-      this.effects.addAll(PotionContentsComponent.getCustomPotionEffects(nbt));
+      PotionContentsComponent potionContents = PotionContentsComponent.fromNbt(nbt);
+      if (potionContents != null) {
+         this.effects.addAll(potionContents.customEffects());
+      }
    }
 
    @Nullable

@@ -1,6 +1,8 @@
 package com.eightsidedsquare.contentcontent.common.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,23 +19,22 @@ public class WrappedBundleItem extends AliasedBlockItem {
 
    // Copy and use these static methods in any dyeable item class!
    public static int getColor(ItemStack stack) {
-      NbtCompound display = stack.getSubNbt("display");
+      NbtCompound display = stack.get("display");
       return (display != null && display.contains("color", NbtElement.INT_TYPE))
               ? display.getInt("color")
               : DEFAULT_COLOR;
    }
 
    public static void setColor(ItemStack stack, int color) {
-      stack.getOrCreateSubNbt("display").putInt("color", color);
+      stack.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(color, false));
    }
 
    public static boolean hasColor(ItemStack stack) {
-      NbtCompound display = stack.getSubNbt("display");
-      return display != null && display.contains("color", NbtElement.INT_TYPE);
+      return stack.contains(DataComponentTypes.DYED_COLOR);
    }
 
    public static void removeColor(ItemStack stack) {
-      NbtCompound display = stack.getSubNbt("display");
+      NbtCompound display = stack.get("display");
       if (display != null && display.contains("color")) {
          display.remove("color");
       }

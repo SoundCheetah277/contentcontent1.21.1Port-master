@@ -17,7 +17,7 @@ import java.util.List;
 
 public class WrappedBundleRecipe extends SpecialCraftingRecipe {
    public WrappedBundleRecipe(CraftingRecipeCategory craftingRecipeCategory) {
-      super(identifier, CraftingRecipeCategory.MISC);
+      super(CraftingRecipeCategory.MISC);
    }
 
    public boolean matches(RecipeInputInventory inventory, World world) {
@@ -56,7 +56,7 @@ public class WrappedBundleRecipe extends SpecialCraftingRecipe {
          }
 
          if (stack.isOf(Items.BUNDLE)) {
-            result.getOrCreateNbt().put("Items", stack.getOrCreateNbt().getList("Items", 10));
+            result.getComponents().put("Items", stack.getComponents().getList("Items", 10));
          }
       }
 
