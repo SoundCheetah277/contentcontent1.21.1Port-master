@@ -25,7 +25,7 @@ public class ContentMod implements ModInitializer {
 
    @Override
    public void onInitialize() {
-      GeckoLib.initialize();
+      //GeckoLib.initialize();
       ContentBlocks.init();
       ContentItems.init();
       ContentEntities.init();

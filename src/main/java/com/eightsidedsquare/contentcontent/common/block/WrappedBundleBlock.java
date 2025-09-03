@@ -7,6 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.component.ComponentType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -77,7 +78,12 @@ public class WrappedBundleBlock extends BlockWithEntity implements Waterloggable
          world.getBlockEntity(pos, ContentEntities.WRAPPED_BUNDLE).ifPresent(entity -> {
             entity.setYaw(player.isSneaking() ? Math.round(angle / 22.5F) * 22.5F : angle);
             ItemStack stack = new ItemStack(Items.BUNDLE);
-            stack.set(itemStack.getComponents());
+            for (ComponentType<?> componentType : itemStack.getComponents().getTypes()) {
+               Object component = itemStack.get(componentType);
+               if (component != null) {
+                  ((ItemStack) stack).set((ComponentType) componentType, component);
+               }
+            }
             entity.setBundle(stack);
             entity.setColor(DyeableHelper.getColor(itemStack));
          });
@@ -116,6 +122,6 @@ public class WrappedBundleBlock extends BlockWithEntity implements Waterloggable
 
    @Nullable
    public <T extends BlockEntity> BlockEntityTicker<T> checkType(World world, BlockState state, BlockEntityType<T> type) {
-      return checkType(type, ContentEntities.WRAPPED_BUNDLE, WrappedBundleBlockEntity::tick);
+      return validateTicker(type, ContentEntities.WRAPPED_BUNDLE, WrappedBundleBlockEntity::tick);
    }
 }

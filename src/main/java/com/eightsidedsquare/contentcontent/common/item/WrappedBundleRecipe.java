@@ -1,6 +1,8 @@
 package com.eightsidedsquare.contentcontent.common.item;
 
 import com.eightsidedsquare.contentcontent.core.ContentItems;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.*;
 import net.minecraft.recipe.RecipeSerializer;
@@ -56,7 +58,12 @@ public class WrappedBundleRecipe extends SpecialCraftingRecipe {
          }
 
          if (stack.isOf(Items.BUNDLE)) {
-            result.getComponents().put("Items", stack.getComponents().getList("Items", 10));
+            if (stack.contains(DataComponentTypes.BUNDLE_CONTENTS)) {
+               BundleContentsComponent bundleContents = stack.get(DataComponentTypes.BUNDLE_CONTENTS);
+               if (bundleContents != null) {
+                  result.set(DataComponentTypes.BUNDLE_CONTENTS, bundleContents);
+               }
+            }
          }
       }
 

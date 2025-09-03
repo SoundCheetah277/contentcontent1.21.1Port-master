@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 
 import java.util.Comparator;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 public class FoodItemEntitySensor extends Sensor<AnimalEntity> {
+
    protected void sense(ServerWorld world, AnimalEntity entity) {
       Brain<?> brain = entity.getBrain();
       List<ItemEntity> list = world.getEntitiesByClass(
@@ -25,13 +27,19 @@ public class FoodItemEntitySensor extends Sensor<AnimalEntity> {
       );
       list.sort(Comparator.comparingDouble(entity::squaredDistanceTo));
       brain.remember(CMemoryModuleType.NEAREST_FOOD_ITEM_ENTITY, list.stream().filter(entity::canSee).findFirst());
-      FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
-      if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && foodComponent != null) {
-         brain.remember(CMemoryModuleType.IS_EATING, true);
+
+      // Add this part:
+      if (!list.isEmpty()) {
+         ItemStack stack = list.get(0).getStack(); // Get first item's stack
+         FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
+         if (!brain.getOptionalMemory(CMemoryModuleType.ATE_RECENTLY).orElse(false) && foodComponent != null) {
+            brain.remember(CMemoryModuleType.IS_EATING, true);
+         }
       }
    }
 
+   @Override
    public Set<MemoryModuleType<?>> getOutputMemoryModules() {
-      return ImmutableSet.of(CMemoryModuleType.NEAREST_FOOD_ITEM_ENTITY, CMemoryModuleType.IS_EATING);
+      return Set.of();
    }
 }

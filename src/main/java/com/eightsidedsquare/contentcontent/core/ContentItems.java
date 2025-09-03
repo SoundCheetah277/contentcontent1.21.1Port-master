@@ -261,8 +261,9 @@ public class ContentItems {
       UniformLootNumberProvider lootTableRange = UniformLootNumberProvider.create(1.0F, 1.0F);
       LootCondition chanceLootCondition = RandomChanceLootCondition.builder(0.05F).build();
       LootTableEvents.MODIFY.register(
-                      (resourceManager, lootManager, id, tableBuilder, source) -> {
-                         if (LootTables.ABANDONED_MINESHAFT_CHEST.equals(id) || LootTables.BURIED_TREASURE_CHEST.equals(id) || LootTables.SIMPLE_DUNGEON_CHEST.equals(id) || LootTables.ANCIENT_CITY_CHEST.equals(id)) {
+
+              (key, tableBuilder, source) -> {
+                         if (LootTables.ABANDONED_MINESHAFT_CHEST.equals(key.getValue()) || LootTables.BURIED_TREASURE_CHEST.equals(key.getValue()) || LootTables.SIMPLE_DUNGEON_CHEST.equals(key.getValue()) || LootTables.ANCIENT_CITY_CHEST.equals(key.getValue())) {
                             LootPool lootPool = LootPool.builder()
                                     .rolls(lootTableRange)
                                     .conditionally(chanceLootCondition)
@@ -290,7 +291,7 @@ public class ContentItems {
               new FallibleItemDispenserBehavior() {
                  protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
                     ServerWorld world = pointer.world();
-                    Direction d = (Direction)world.getBlockState().get(DispenserBlock.FACING);
+                    Direction d = (Direction)world.getBlockState(pointer.pos()).get(DispenserBlock.FACING);
                     BlockState state = world.getBlockState(pointer.pos().offset(d));
                     if (state.isAir() || state.isOf(Blocks.NOTE_BLOCK)) {
                        float pitch = state.isOf(Blocks.NOTE_BLOCK)

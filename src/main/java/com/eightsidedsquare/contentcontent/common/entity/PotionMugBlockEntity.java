@@ -2,6 +2,8 @@ package com.eightsidedsquare.contentcontent.common.entity;
 
 import com.eightsidedsquare.contentcontent.core.ContentBlocks;
 import com.eightsidedsquare.contentcontent.core.ContentEntities;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -55,7 +57,15 @@ public class PotionMugBlockEntity extends BlockEntity {
    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
       super.readNbt(nbt, registryLookup);
       this.effects = new LinkedList<>();
-      PotionContentsComponent potionContents = PotionContentsComponent.fromNbt(nbt);
+      List<StatusEffectInstance> customEffects = new ArrayList<>();
+      if (nbt.contains("custom_potion_effects", 9)) { // 9 = LIST NBT type
+         NbtList effectsNbt = nbt.getList("custom_potion_effects", 10); // 10 = COMPOUND NBT type
+         for (int i = 0; i < effectsNbt.size(); i++) {
+            StatusEffectInstance effect = StatusEffectInstance.fromNbt(effectsNbt.getCompound(i));
+            if (effect != null) customEffects.add(effect);
+         }
+      }
+      this.effects.addAll(customEffects);
       if (potionContents != null) {
          this.effects.addAll(potionContents.customEffects());
       }

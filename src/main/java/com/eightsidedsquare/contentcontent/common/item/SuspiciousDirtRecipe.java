@@ -3,6 +3,9 @@ package com.eightsidedsquare.contentcontent.common.item;
 import com.eightsidedsquare.contentcontent.core.ContentBlocks;
 import com.eightsidedsquare.contentcontent.core.ContentEntities;
 import com.eightsidedsquare.contentcontent.core.ContentItems;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -38,13 +41,7 @@ public class SuspiciousDirtRecipe extends SpecialCraftingRecipe {
    public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
       ItemStack output = this.getOutput();
       ItemStack loot = inventory.getStack(4).copy();
-      if (this.matchesRecipe(inventory) && !loot.isEmpty()) {
-         loot.setCount(1);
-         loot.getComponents().put("Enchantments", new NbtList());
-         NbtCompound nbt = new NbtCompound();
-         nbt.put("item", loot.writeNbt(new NbtCompound()));
-         BlockItem.setBlockEntityNbt(output, ContentEntities.BRUSHABLE_BLOCK, nbt);
-      }
+      loot.set(DataComponentTypes.ENCHANTMENTS, EnchantmentHelper.getEnchantments(new ItemStack(Items.AIR)));
 
       return output;
    }

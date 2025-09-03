@@ -10,10 +10,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.BrushableBlockEntity;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -29,7 +26,7 @@ public class ContentEntities {
                    .entityFactory(SquirrelEntity::new)
                    .defaultAttributes(SquirrelEntity::createAttributes)
                    .spawnGroup(SpawnGroup.CREATURE)
-                   .spawnRestriction(SpawnRestriction.SpawnPredicate.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
+                   .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
                    .dimensions(EntityDimensions.changing(0.6F, 0.55F))
                    .build()
    );
