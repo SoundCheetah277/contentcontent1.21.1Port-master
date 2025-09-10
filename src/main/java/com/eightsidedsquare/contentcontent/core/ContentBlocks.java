@@ -413,17 +413,20 @@ public class ContentBlocks {
    public static final Block POTTED_FOLLY_SEED = create(
            "potted_folly_seed", new PottedFollySeedBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().ticksRandomly()), null
    );
-   public static final Block SUSPICIOUS_DIRT = new BrushableBlock(
-           Blocks.DIRT,
-           SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL,
-           SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL_COMPLETE,
-           AbstractBlock.Settings.copy(Blocks.SUSPICIOUS_GRAVEL)
-                   .mapColor(MapColor.DIRT_BROWN)
-                   .strength(0.25F)
-                   .pistonBehavior(PistonBehavior.DESTROY)
-/*                     .sounds(BlockSoundGroup.SUSPICIOUS_GRAVEL),*/
-
+   public static final Block SUSPICIOUS_DIRT = create(
+           "suspicious_dirt",
+           new BrushableBlock(
+                   Blocks.DIRT,
+                   SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL,
+                   SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL_COMPLETE,
+                   AbstractBlock.Settings.copy(Blocks.SUSPICIOUS_GRAVEL)
+                           .mapColor(MapColor.DIRT_BROWN)
+                           .strength(0.25F)
+                           .pistonBehavior(PistonBehavior.DESTROY)
+           ),
+           ItemGroups.FUNCTIONAL  // or null if you don't want a BlockItem
    );
+
    public static final BlockFamily FOLLY_FAMILY = BlockFamilies.register(FOLLY_PLANKS)
            .slab(FOLLY_SLAB)
            .stairs(FOLLY_STAIRS)
