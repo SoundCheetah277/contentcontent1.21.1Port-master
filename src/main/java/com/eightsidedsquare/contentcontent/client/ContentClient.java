@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.item.CompassAnglePredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
@@ -110,8 +111,22 @@ public class ContentClient implements ClientModInitializer {
       EntityRendererRegistry.register(ContentEntities.SQUIRREL, SquirrelEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.DISPLAY_CASE, DisplayCaseBlockEntityRenderer::new);
       BlockEntityRendererRegistry.register(ContentEntities.WRAPPED_BUNDLE, WrappedBundleBlockEntityRenderer::new);
-      //ClientPlayNetworking.registerGlobalReceiver(MagnetTargetSetS2CPacket.ID, MagnetTargetSetS2CPacket::handler);
-      //ClientPlayNetworking.registerGlobalReceiver(MagnetTargetClearS2CPacket.ID, MagnetTargetClearS2CPacket::handler);
+      PayloadTypeRegistry.playS2C().register(MagnetTargetSetS2CPacket.PAYLOAD_ID, MagnetTargetSetS2CPacket.CODEC);
+      PayloadTypeRegistry.playS2C().register(MagnetTargetClearS2CPacket.PAYLOAD_ID, MagnetTargetClearS2CPacket.CODEC);
+
+      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetSetS2CPacket.PAYLOAD_ID,
+              (payload, context) -> {
+                 context.client().execute(() -> {
+                    ContentClient.magnetTarget = payload.pos();
+                 });
+              });
+
+      ClientPlayNetworking.registerGlobalReceiver(MagnetTargetClearS2CPacket.PAYLOAD_ID,
+              (payload, context) -> {
+                 context.client().execute(() -> {
+                    ContentClient.magnetTarget = null;
+                 });
+              });
    }
 
    private static int getWrappedBundleColor(ItemStack stack, int tintIndex) {

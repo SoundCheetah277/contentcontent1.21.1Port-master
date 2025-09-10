@@ -22,9 +22,9 @@ public class FlowerPotBlockMixin {
       cancellable = true
    )
    private void onUse(
-           BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir
+           BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir
    ) {
-      if (player.getStackInHand(hand).isOf(ContentItems.FOLLY_SEED)) {
+      if (player.getStackInHand(Hand.MAIN_HAND).isOf(ContentItems.FOLLY_SEED)) {
          cir.setReturnValue(ActionResult.PASS);
       }
    }

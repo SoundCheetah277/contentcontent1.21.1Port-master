@@ -1,23 +1,28 @@
 package com.eightsidedsquare.contentcontent.mixin;
 
 import com.eightsidedsquare.contentcontent.core.ContentItems;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin({PlayerEntity.class})
+@Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
-   @WrapOperation(
-      method = {"attack"},
-      at = {@At(
-         value = "INVOKE",
-         target = "Lnet/minecraft/enchantment/EnchantmentHelper;getKnockback(Lnet/minecraft/entity/LivingEntity;)I"
-      )}
-   )
-   private int contentcontent$getBoxingGloveKnockback(LivingEntity entity, Operation<Integer> operation) {
-      return (Integer)operation.call(entity) + (entity.getMainHandStack().isOf(ContentItems.BOXING_GLOVE) ? 1 : 0);
+   @Inject(method = "attack", at = @At("HEAD"))
+   private void addBoxingGloveKnockback(Entity target, CallbackInfo ci) {
+      PlayerEntity player = (PlayerEntity)(Object)this;
+
+      if (player.getMainHandStack().isOf(ContentItems.BOXING_GLOVE) && target instanceof LivingEntity livingTarget) {
+         // Apply additional knockback through velocity modification
+         double knockbackStrength = 1.0;
+         double dx = -Math.sin(Math.toRadians(player.getYaw())) * knockbackStrength;
+         double dz = Math.cos(Math.toRadians(player.getYaw())) * knockbackStrength;
+         livingTarget.addVelocity(dx, 0.1, dz);
+         livingTarget.velocityModified = true;
+      }
    }
 }

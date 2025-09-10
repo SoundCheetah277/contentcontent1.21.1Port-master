@@ -14,6 +14,7 @@ import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -65,10 +66,19 @@ public class PotionMugBlockEntity extends BlockEntity {
             if (effect != null) customEffects.add(effect);
          }
       }
+
       this.effects.addAll(customEffects);
-      if (potionContents != null) {
-         this.effects.addAll(potionContents.customEffects());
+      List<StatusEffectInstance> effectsFromNbt = new ArrayList<>();
+      if (nbt.contains("custom_potion_effects", NbtElement.LIST_TYPE)) {
+         NbtList effectsList = nbt.getList("custom_potion_effects", NbtElement.COMPOUND_TYPE);
+         for (int i = 0; i < effectsList.size(); i++) {
+            StatusEffectInstance effect = StatusEffectInstance.fromNbt(effectsList.getCompound(i));
+            if (effect != null) {
+               effectsFromNbt.add(effect);
+            }
+         }
       }
+      this.effects.addAll(effectsFromNbt);
    }
 
    @Nullable

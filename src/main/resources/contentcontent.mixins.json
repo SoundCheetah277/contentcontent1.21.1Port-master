@@ -15,6 +15,7 @@
     "FlowerPotBlockMixin",
     "IronScaffoldingLivingEntityMixin",
     "LanternBlockMixin",
+    "LivingEntityMixin",
     "MobEntityMixin",
     "NoteBlockMixin",
     "PlayerEntityMixin",
