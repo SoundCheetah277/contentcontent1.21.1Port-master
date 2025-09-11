@@ -13,9 +13,6 @@ import java.util.Map;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents.Modify;
-import net.fabricmc.fabric.api.loot.v3.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -27,23 +24,19 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.*;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
-import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -105,17 +98,17 @@ public class ContentItems {
    public static final SpecialRecipeSerializer<CopperHornRecipe> COPPER_HORN_RECIPE_SERIALIZER =
            RecipeSerializer.register(
                    "contentcontent:crafting_special_copper_horn",
-                   new SpecialRecipeSerializer<>((CraftingRecipeCategory identifier) -> new CopperHornRecipe(identifier))
+                   new SpecialRecipeSerializer<>(CopperHornRecipe::new)
            );
    public static final SpecialRecipeSerializer<WrappedBundleRecipe> WRAPPED_BUNDLE_RECIPE_SERIALIZER =
            RecipeSerializer.register(
                    "contentcontent:crafting_special_wrapped_bundle",
-                   new SpecialRecipeSerializer<>((CraftingRecipeCategory identifier) -> new WrappedBundleRecipe(identifier))
+                   new SpecialRecipeSerializer<>(WrappedBundleRecipe::new)
            );
    public static final SpecialRecipeSerializer<SuspiciousDirtRecipe> SUSPICIOUS_DIRT_RECIPE_SERIALIZER =
            RecipeSerializer.register(
                    "contentcontent:crafting_special_suspicious_dirt",
-                   new SpecialRecipeSerializer<>((CraftingRecipeCategory identifier) -> new SuspiciousDirtRecipe(identifier))
+                   new SpecialRecipeSerializer<>(SuspiciousDirtRecipe::new)
            );
 
    public static void init() {

@@ -3,8 +3,6 @@ package com.eightsidedsquare.contentcontent.util;
 import com.eightsidedsquare.contentcontent.common.item.BoxingGloveItem;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 
 import java.util.List;
 

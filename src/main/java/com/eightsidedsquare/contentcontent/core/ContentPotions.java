@@ -11,17 +11,24 @@ import net.minecraft.util.Identifier;
 
 public class ContentPotions {
 
-   public static final StatusEffect RUSTLING_STATUS_EFFECT = new RustlingStatusEffect();
-   public static final Potion RUSTLING = registerPotion("rustling", new Potion(new StatusEffectInstance[]{new StatusEffectInstance((RegistryEntry<StatusEffect>) RUSTLING_STATUS_EFFECT, 3600)}));
-   public static final Potion LONG_RUSTLING = registerPotion(
-      "long_rustling", new Potion(new StatusEffectInstance[]{new StatusEffectInstance((RustlingStatusEffect) RUSTLING_STATUS_EFFECT, 9600)})
-   );
-
-   private static Potion registerPotion(String name, Potion potion) {
-      return (Potion) Registry.register(Registries.POTION, name, potion);
-   }
+   public static StatusEffect RUSTLING_STATUS_EFFECT;
+   public static RegistryEntry<StatusEffect> RUSTLING_EFFECT_ENTRY;
+   public static Potion RUSTLING;
+   public static Potion LONG_RUSTLING;
 
    public static void init() {
-      Registry.register(Registries.STATUS_EFFECT, Identifier.of("contentcontent", "rustling"), RUSTLING_STATUS_EFFECT);
+      // Register the status effect first
+      Identifier rustlingId = Identifier.of("contentcontent", "rustling");
+      RUSTLING_STATUS_EFFECT = Registry.register(Registries.STATUS_EFFECT, rustlingId, new RustlingStatusEffect());
+
+      // Then obtain the RegistryEntry<StatusEffect> from the registry
+      RUSTLING_EFFECT_ENTRY = Registries.STATUS_EFFECT.getEntry(rustlingId).orElseThrow();
+
+      // Register potions using StatusEffectInstance with RegistryEntry reference
+      RUSTLING = Registry.register(Registries.POTION, Identifier.of("contentcontent", "rustling"),
+              new Potion(new StatusEffectInstance(RUSTLING_EFFECT_ENTRY, 3600)));
+
+      LONG_RUSTLING = Registry.register(Registries.POTION, Identifier.of("contentcontent", "long_rustling"),
+              new Potion(new StatusEffectInstance(RUSTLING_EFFECT_ENTRY, 9600)));
    }
 }

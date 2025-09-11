@@ -13,8 +13,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -29,12 +27,16 @@ import net.minecraft.world.World;
 public class BoxingGloveItem extends Item {
    private static final int DEFAULT_COLOR = 0xA06540;
    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
-   public class ContentContentComponents {
-      public static final ComponentType<Integer> COLOR = Registry.register(
-              Registries.DATA_COMPONENT_TYPE,
-              Identifier.of("contentcontent", "color"),
-              ComponentType.<Integer>builder().codec(Codec.INT).build()
-      );
+   public static class ContentContentComponents {
+      public static ComponentType<Integer> COLOR;
+
+      public static void register() {
+         COLOR = Registry.register(
+                 Registries.DATA_COMPONENT_TYPE,
+                 Identifier.of("contentcontent", "color"),
+                 ComponentType.<Integer>builder().codec(Codec.INT).build()
+         );
+      }
    }   public BoxingGloveItem(Item.Settings settings) {
       super(settings);
       Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
