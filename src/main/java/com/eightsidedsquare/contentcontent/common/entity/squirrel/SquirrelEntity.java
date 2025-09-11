@@ -314,11 +314,11 @@ public class SquirrelEntity extends AnimalEntity implements GeoEntity {
 
    protected void initDataTracker(DataTracker.Builder builder) {
       super.initDataTracker(builder);
-      this.dataTracker.set(IS_CLIMBING, false);
-      this.dataTracker.set(IS_DIGGING, false);
-      this.dataTracker.set(IS_EATING, false);
-      this.dataTracker.set(VARIANT, 0);
-      this.dataTracker.set(CLIMB_TIME, 0);
+      builder.add(IS_CLIMBING, false);
+      builder.add(IS_DIGGING, false);
+      builder.add(IS_EATING, false);
+      builder.add(VARIANT, 0);
+      builder.add(CLIMB_TIME, 0);
    }
 
    public boolean isClimbing() {

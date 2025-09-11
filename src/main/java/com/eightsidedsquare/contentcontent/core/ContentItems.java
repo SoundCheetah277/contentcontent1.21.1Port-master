@@ -37,6 +37,7 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.BrewingRecipeRegistry;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
@@ -274,8 +275,16 @@ public class ContentItems {
                       }
               );
       FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-         builder.registerPotionRecipe(Potions.AWKWARD, ACORN, (RegistryEntry<Potion>) ContentPotions.RUSTLING);
-         builder.registerPotionRecipe((RegistryEntry<Potion>) ContentPotions.RUSTLING, Items.REDSTONE, (RegistryEntry<Potion>) ContentPotions.LONG_RUSTLING);
+         builder.registerPotionRecipe(
+                 Potions.AWKWARD,
+                 Ingredient.ofItems(ContentItems.ACORN),
+                 Registries.POTION.getEntry(ContentPotions.RUSTLING)
+         );
+         builder.registerPotionRecipe(
+                 Registries.POTION.getEntry(ContentPotions.RUSTLING),
+                 Ingredient.ofItems(Items.REDSTONE),
+                 Registries.POTION.getEntry(ContentPotions.LONG_RUSTLING)
+         );
       });
       registerDispenserBehaviors();
    }
