@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 
-public class DisplayCaseBlockEntityRenderer implements BlockEntityRenderer<DisplayCaseBlockEntity> {
+public class   DisplayCaseBlockEntityRenderer implements BlockEntityRenderer<DisplayCaseBlockEntity> {
    private final ItemRenderer itemRenderer;
    private final TextRenderer textRenderer;
 

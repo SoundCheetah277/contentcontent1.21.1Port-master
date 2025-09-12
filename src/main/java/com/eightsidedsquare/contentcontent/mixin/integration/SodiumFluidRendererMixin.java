@@ -16,31 +16,30 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(
-   value = {FluidRenderer.class},
-   remap = false
-)
+@Mixin(value = FluidRenderer.class, remap = false)
 public class SodiumFluidRendererMixin {
-   @Final
-   private BlockPos.Mutable scratchPos;
+   // Remove the @Shadow field entirely - it doesn't exist in this version
 
    @Inject(
-      method = {"isFluidOccluded"},
-      at = {@At("RETURN")},
-      cancellable = true
+           method = "isFluidOccluded",
+           at = @At("RETURN"),
+           cancellable = true,
+           remap = false
    )
-   private void isFluidOccluded(BlockRenderView world, int x, int y, int z, Direction direction, Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
-      if (!(Boolean)cir.getReturnValue()) {
-         BlockState state = world.getBlockState(new BlockPos(this.scratchPos).offset(direction.getOpposite()));
-         if(ContentMod.CONFIG.hideWaterBehindGlass && !cir.getReturnValue()) {
-            BlockState sideState = world.getBlockState(this.scratchPos);
-            boolean coveredFromInside = state.getBlock() instanceof AquariumGlassBlock
-               && ((Direction)state.get(Properties.FACING)).equals(direction.getOpposite());
-            boolean coveredFromSide = sideState.getBlock() instanceof AquariumGlassBlock
-               && ((Direction)sideState.get(Properties.FACING)).equals(direction);
-            if (coveredFromInside || coveredFromSide) {
-               cir.setReturnValue(true);
-            }
+   private void hideWaterBehindGlass(BlockRenderView world, int x, int y, int z, Direction direction, Fluid fluid, CallbackInfoReturnable<Boolean> cir) {
+      if (!cir.getReturnValue() && ContentMod.CONFIG.hideWaterBehindGlass) {
+         // Use BlockPos directly instead of scratchPos
+         BlockPos pos = new BlockPos(x, y, z);
+         BlockState state = world.getBlockState(pos.offset(direction.getOpposite()));
+         BlockState sideState = world.getBlockState(pos);
+
+         boolean coveredFromInside = state.getBlock() instanceof AquariumGlassBlock
+                 && state.get(Properties.FACING).equals(direction.getOpposite());
+         boolean coveredFromSide = sideState.getBlock() instanceof AquariumGlassBlock
+                 && sideState.get(Properties.FACING).equals(direction);
+
+         if (coveredFromInside || coveredFromSide) {
+            cir.setReturnValue(true);
          }
       }
    }

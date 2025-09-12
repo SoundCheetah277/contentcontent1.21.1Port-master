@@ -11,6 +11,8 @@ import com.eightsidedsquare.contentcontent.common.network.MagnetTargetSetS2CPack
 import com.eightsidedsquare.contentcontent.core.ContentBlocks;
 import com.eightsidedsquare.contentcontent.core.ContentEntities;
 import com.eightsidedsquare.contentcontent.core.ContentItems;
+import com.eightsidedsquare.contentcontent.core.ContentMod;
+import com.mojang.serialization.Codec;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -23,6 +25,7 @@ import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.item.CompassAnglePredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.component.ComponentType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -32,6 +35,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.GlobalPos;
 import org.jetbrains.annotations.Nullable;
+
+import static com.eightsidedsquare.contentcontent.core.ContentMod.MOD_ID;
 
 public class ContentClient implements ClientModInitializer {
    public static final SimpleParticleType EMBER = Registry.register(
@@ -128,16 +133,21 @@ public class ContentClient implements ClientModInitializer {
                  });
               });
    }
-
+   public static final ComponentType<Integer> COLOR_COMPONENT = Registry.register(
+           Registries.DATA_COMPONENT_TYPE,
+           Identifier.of(MOD_ID, "color"),
+           ComponentType.<Integer>builder().codec(Codec.INT).build()
+   );
    private static int getWrappedBundleColor(ItemStack stack, int tintIndex) {
       if (tintIndex > 0) {
-         Integer color = stack.get(BoxingGloveItem.ContentContentComponents.COLOR);
+         Integer color = stack.get(ContentMod.COLOR_COMPONENT);
          if (color != null) {
             return color;
          }
       }
       return -1; // No tint if no color tag or tintIndex <= 0
    }
+
 
 
    private static int getBoxingGloveColor(ItemStack stack, int tintIndex) {

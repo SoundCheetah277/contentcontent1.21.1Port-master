@@ -1,10 +1,15 @@
 package com.eightsidedsquare.contentcontent.common.item;
 
+import com.eightsidedsquare.contentcontent.client.ContentClient;
+import com.eightsidedsquare.contentcontent.core.ContentItems;
+import com.eightsidedsquare.contentcontent.core.ContentMod;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentType;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -26,32 +31,25 @@ import net.minecraft.world.World;
 
 public class BoxingGloveItem extends Item {
    private static final int DEFAULT_COLOR = 0xA06540;
-   private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
-   public static class ContentContentComponents {
-      public static ComponentType<Integer> COLOR;
 
-      public static void register() {
-         COLOR = Registry.register(
-                 Registries.DATA_COMPONENT_TYPE,
-                 Identifier.of("contentcontent", "color"),
-                 ComponentType.<Integer>builder().codec(Codec.INT).build()
-         );
-      }
-   }   public BoxingGloveItem(Item.Settings settings) {
+   public BoxingGloveItem(Settings settings) {
       super(settings);
-      Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-      builder.put(EntityAttributes.GENERIC_ATTACK_SPEED.value(), new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID,
-              1.0,
-              EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-      this.attributeModifiers = builder.build();
    }
+
    public int getColor(ItemStack stack) {
-      Integer color = stack.get(ContentContentComponents.COLOR); // Can be null
+      Integer color = stack.get(ContentMod.COLOR_COMPONENT); // Use the main mod's component
       return color != null ? color : DEFAULT_COLOR;
    }
 
-   public Object getAttributeModifiers(EquipmentSlot slot) {
-      return slot == EquipmentSlot.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers();
+   @Override
+   public AttributeModifiersComponent getAttributeModifiers() {
+      return AttributeModifiersComponent.builder()
+              .add(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(
+                      BASE_ATTACK_SPEED_MODIFIER_ID,
+                      1.0,
+                      EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+              ), AttributeModifierSlot.MAINHAND)
+              .build();
    }
 
    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {

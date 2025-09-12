@@ -100,10 +100,13 @@ public class DisplayCaseBlock extends WallMountedBlock implements Waterloggable,
       builder.add(new Property[]{FACE, FACING, WATERLOGGED});
    }
 
-   public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+   @Override
+   protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
       if (world.getBlockEntity(pos) instanceof DisplayCaseBlockEntity entity) {
+         Hand hand = player.getActiveHand();
          ItemStack heldStack = player.getStackInHand(hand);
          ItemStack displayStack = entity.getStack();
+
          if (!heldStack.isEmpty() && displayStack.isEmpty()) {
             entity.setStack(heldStack.copy());
             world.updateComparators(pos, this);
@@ -111,7 +114,6 @@ public class DisplayCaseBlock extends WallMountedBlock implements Waterloggable,
             if (!player.getAbilities().creativeMode) {
                player.setStackInHand(hand, ItemStack.EMPTY);
             }
-
             return ActionResult.success(world.isClient);
          }
 
@@ -123,7 +125,6 @@ public class DisplayCaseBlock extends WallMountedBlock implements Waterloggable,
             return ActionResult.success(world.isClient);
          }
       }
-
       return ActionResult.PASS;
    }
 

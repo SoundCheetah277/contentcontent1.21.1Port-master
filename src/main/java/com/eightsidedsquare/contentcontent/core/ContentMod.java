@@ -2,17 +2,21 @@ package com.eightsidedsquare.contentcontent.core;
 
 import com.eightsidedsquare.contentcontent.core.config.ContentConfig;
 import com.eightsidedsquare.contentcontent.mixin.WoodTypeAccessor;
+import com.mojang.serialization.Codec;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.WoodType;
+import net.minecraft.component.ComponentType;
 import net.minecraft.item.GoatHornItem;
 import net.minecraft.item.Instrument;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import software.bernie.geckolib.GeckoLib;
 
 public class ContentMod implements ModInitializer {
@@ -21,6 +25,11 @@ public class ContentMod implements ModInitializer {
    public static final BlockSetType FOLLYSET = new BlockSetType("folly");
    public static final WoodType FOLLY = WoodTypeAccessor.callRegister(
            new WoodType("folly", ContentMod.FOLLYSET)
+   );
+   public static final ComponentType<Integer> COLOR_COMPONENT = Registry.register(
+           Registries.DATA_COMPONENT_TYPE,
+           Identifier.of(MOD_ID, "color"),
+           ComponentType.<Integer>builder().codec(Codec.INT).build()
    );
 
    @Override
