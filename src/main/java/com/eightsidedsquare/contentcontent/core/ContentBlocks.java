@@ -31,7 +31,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.data.family.BlockFamilies;
@@ -52,12 +51,12 @@ public class ContentBlocks {
    private static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
    public static final Block MOSS_LAYER = create(
            "moss_layer",
-           new LayerBlock(FabricBlockSettings.create().mapColor(MapColor.GREEN).sounds(BlockSoundGroup.MOSS_CARPET).noCollision().breakInstantly()),
+           new LayerBlock(AbstractBlock.Settings.create().mapColor(MapColor.GREEN).sounds(BlockSoundGroup.MOSS_CARPET).noCollision().breakInstantly()),
            ItemGroups.FUNCTIONAL
    );
    public static final Block SNOW_LAYER = create(
            "snow_layer",
-           new LayerBlock(FabricBlockSettings.create().mapColor(MapColor.WHITE).sounds(BlockSoundGroup.POWDER_SNOW).noCollision().breakInstantly()),
+           new LayerBlock(AbstractBlock.Settings.create().mapColor(MapColor.WHITE).sounds(BlockSoundGroup.POWDER_SNOW).noCollision().breakInstantly()),
            ItemGroups.FUNCTIONAL
    );
    public static final Block STICKSHIFT = create("stickshift", new StickshiftBlock(AbstractBlock.Settings.copy(Blocks.LEVER)), ItemGroups.REDSTONE);
@@ -67,7 +66,7 @@ public class ContentBlocks {
    public static final Block IRON_SCAFFOLDING = create(
            "iron_scaffolding",
            new IronScaffoldingBlock(
-                   FabricBlockSettings.create()
+                   AbstractBlock.Settings.create()
                            .mapColor(MapColor.IRON_GRAY)
                            .strength(1.0F)
                            .noCollision()
@@ -89,16 +88,16 @@ public class ContentBlocks {
            null
    );
    public static final Block CHISELED_CHOCOLATE_EGG = create(
-           "chiseled_chocolate_egg", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 4, 8), null
+           "chiseled_chocolate_egg", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 4, 8), null
    );
-   public static final Block CHOCOLATE_FROG = create("chocolate_frog", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 4, 5), null);
-   public static final Block CHOCOLATE_RAT = create("chocolate_rat", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 4, 6), null);
-   public static final Block CHOCOLATE_RAVEN = create("chocolate_raven", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 3, 5), null);
+   public static final Block CHOCOLATE_FROG = create("chocolate_frog", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 4, 5), null);
+   public static final Block CHOCOLATE_RAT = create("chocolate_rat", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 4, 6), null);
+   public static final Block CHOCOLATE_RAVEN = create("chocolate_raven", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 3, 5), null);
    public static final Block CHOCOLATE_SQUIRREL = create(
-           "chocolate_squirrel", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 4, 10), null
+           "chocolate_squirrel", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 4, 10), null
    );
    public static final Block CHOCOLATE_CREWMATE = create(
-           "chocolate_crewmate", new ChocolateBlock(FabricBlockSettings.copy(CHOCOLATE_EGG), 3, 8), null
+           "chocolate_crewmate", new ChocolateBlock(AbstractBlock.Settings.copy(CHOCOLATE_EGG), 3, 8), null
    );
    public static final Block CALCITE_STAIRS = create(
            "calcite_stairs", new StairsBlock(Blocks.CALCITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CALCITE)), ItemGroups.BUILDING_BLOCKS
@@ -184,7 +183,7 @@ public class ContentBlocks {
    );
    public static final Block MUG = create(
            "mug",
-           new MugBlock(FabricBlockSettings.create().mapColor(MapColor.BROWN).nonOpaque().sounds(BlockSoundGroup.WOOD).strength(0.5F)),
+           new MugBlock(AbstractBlock.Settings.create().mapColor(MapColor.BROWN).nonOpaque().sounds(BlockSoundGroup.WOOD).strength(0.5F)),
            ItemGroups.FUNCTIONAL
    );
    public static final Block LAVA_MUG = create("lava_mug", new LavaMugBlock(AbstractBlock.Settings.copy(MUG).luminance(LavaMugBlock::getLight)), null);
@@ -287,7 +286,7 @@ public class ContentBlocks {
    public static final Block WRAPPED_BUNDLE = create(
            "wrapped_bundle",
            new WrappedBundleBlock(
-                   FabricBlockSettings.create().mapColor(MapColor.OAK_TAN).strength(0.1F).sounds(BlockSoundGroup.WOOL).nonOpaque()
+                   AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).strength(0.1F).sounds(BlockSoundGroup.WOOL).nonOpaque()
            ),
            null
    );
@@ -306,7 +305,7 @@ public class ContentBlocks {
    public static final Block FOLLY_VINES = create(
            "folly_vines",
            new FollyVinesBlock(
-                   FabricBlockSettings.create()
+                   AbstractBlock.Settings.create()
                            .ticksRandomly()
                            .noCollision()
                            .breakInstantly()
@@ -318,28 +317,28 @@ public class ContentBlocks {
    public static final Block FOLLY_VINES_PLANT = create(
            "folly_vines_plant",
            new FollyVinesPlantBlock(
-                   FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES).mapColor(MapColor.PINK)
+                   AbstractBlock.Settings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES).mapColor(MapColor.PINK)
            ),
            null
    );
    public static final Block FOLLY_LOG = create(
            "folly_log",
-           new FollyLogBlock(FabricBlockSettings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
+           new FollyLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
            ItemGroups.BUILDING_BLOCKS
    );
    public static final Block FOLLY_WOOD = create(
            "folly_wood",
-           new FollyLogBlock(FabricBlockSettings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
+           new FollyLogBlock(AbstractBlock.Settings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
            ItemGroups.BUILDING_BLOCKS
    );
    public static final Block STRIPPED_FOLLY_LOG = create(
            "stripped_folly_log",
-           new PillarBlock(FabricBlockSettings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
+           new PillarBlock(AbstractBlock.Settings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
            ItemGroups.BUILDING_BLOCKS
    );
    public static final Block STRIPPED_FOLLY_WOOD = create(
            "stripped_folly_wood",
-           new PillarBlock(FabricBlockSettings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
+           new PillarBlock(AbstractBlock.Settings.create().mapColor(MapColor.PINK).strength(2.0F).sounds(BlockSoundGroup.WOOD)),
            ItemGroups.BUILDING_BLOCKS
    );
    public static final Block FOLLY_PLANKS = create(
@@ -408,10 +407,10 @@ public class ContentBlocks {
            "folly_wall_sign", new WallSignBlock(ContentMod.FOLLY, AbstractBlock.Settings.copy(Blocks.ACACIA_SIGN).mapColor(MapColor.PINK)), null
    );
    public static final Block POTTED_FOLLY_SAPLING = create(
-           "potted_folly_sapling", new FlowerPotBlock(FOLLY_SAPLING, FabricBlockSettings.create().breakInstantly().nonOpaque()), null
+           "potted_folly_sapling", new FlowerPotBlock(FOLLY_SAPLING, AbstractBlock.Settings.create().breakInstantly().nonOpaque()), null
    );
    public static final Block POTTED_FOLLY_SEED = create(
-           "potted_folly_seed", new PottedFollySeedBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().ticksRandomly()), null
+           "potted_folly_seed", new PottedFollySeedBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().ticksRandomly()), null
    );
    public static final Block SUSPICIOUS_DIRT = create(
            "suspicious_dirt",

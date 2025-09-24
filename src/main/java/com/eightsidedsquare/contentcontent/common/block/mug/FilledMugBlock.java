@@ -25,26 +25,26 @@ public abstract class FilledMugBlock extends MugBlock {
       this.setDefaultState((BlockState)super.getDefaultState().with(LEVEL, 3));
    }
 
-   @Override
-   public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-      if (this.canFill(state, world, pos, player, hand)) {
-         this.fill(state, world, pos, player, hand);
-         if (!world.isClient) {
-            world.playSound(null, pos, this.getFillSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-         }
+      @Override
+      public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+         if (this.canFill(state, world, pos, player, hand)) {
+            this.fill(state, world, pos, player, hand);
+            if (!world.isClient) {
+               world.playSound(null, pos, this.getFillSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
 
-         return ActionResult.success(world.isClient);
-      } else if (this.canDrink(state, world, pos, player, hand)) {
-         this.drink(player, state, world, pos);
-         if (!world.isClient) {
-            world.playSound(null, pos, this.getDrinkSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-         }
+            return ActionResult.success(world.isClient);
+         } else if (this.canDrink(state, world, pos, player, hand)) {
+            this.drink(player, state, world, pos);
+            if (!world.isClient) {
+               world.playSound(null, pos, this.getDrinkSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
 
-         return ActionResult.success(world.isClient);
-      } else {
-         return ActionResult.PASS;
+            return ActionResult.success(world.isClient);
+         } else {
+            return ActionResult.PASS;
+         }
       }
-   }
 
    protected SoundEvent getFillSound() {
       return SoundEvents.ITEM_BOTTLE_EMPTY;

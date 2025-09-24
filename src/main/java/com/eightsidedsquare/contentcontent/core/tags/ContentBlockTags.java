@@ -13,4 +13,5 @@ public class ContentBlockTags {
    private static TagKey<Block> register(String id) {
       return TagKey.of(RegistryKeys.BLOCK, Identifier.of("contentcontent", id));
    }
+
 }
