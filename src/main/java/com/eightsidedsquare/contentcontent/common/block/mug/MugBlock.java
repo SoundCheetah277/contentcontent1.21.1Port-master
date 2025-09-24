@@ -1,6 +1,5 @@
 package com.eightsidedsquare.contentcontent.common.block.mug;
 
-import com.eightsidedsquare.contentcontent.common.entity.PotionMugBlockEntity;
 import com.eightsidedsquare.contentcontent.core.ContentBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -10,8 +9,7 @@ import net.minecraft.item.*;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.component.type.PotionContentsComponent;
+
 import java.util.List;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -27,7 +25,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import net.minecraft.potion.Potion;
 import org.jetbrains.annotations.Nullable;
 
 public class MugBlock extends HorizontalFacingBlock {

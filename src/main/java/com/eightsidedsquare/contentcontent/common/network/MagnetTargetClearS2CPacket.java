@@ -1,11 +1,5 @@
 package com.eightsidedsquare.contentcontent.common.network;
 
-import com.eightsidedsquare.contentcontent.client.ContentClient;
-import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;

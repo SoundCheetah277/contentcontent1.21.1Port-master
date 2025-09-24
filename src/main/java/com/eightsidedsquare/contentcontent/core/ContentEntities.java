@@ -33,22 +33,22 @@ public class ContentEntities {
    public static final BlockEntityType<PotionMugBlockEntity> POTION_MUG = (BlockEntityType<PotionMugBlockEntity>)Registry.register(
            Registries.BLOCK_ENTITY_TYPE,
            Identifier.of("contentcontent", "potion_mug"),
-           FabricBlockEntityTypeBuilder.create(PotionMugBlockEntity::new, new Block[]{ContentBlocks.POTION_MUG, ContentBlocks.PILK_MUG}).build()
+           BlockEntityType.Builder.create(PotionMugBlockEntity::new, new Block[]{ContentBlocks.POTION_MUG, ContentBlocks.PILK_MUG}).build()
    );
    public static final BlockEntityType<DisplayCaseBlockEntity> DISPLAY_CASE = (BlockEntityType<DisplayCaseBlockEntity>) Registry.register(
            Registries.BLOCK_ENTITY_TYPE,
            Identifier.of("contentcontent", "display_case"),
-           FabricBlockEntityTypeBuilder.create(DisplayCaseBlockEntity::new, new Block[]{ContentBlocks.DISPLAY_CASE}).build()
+           BlockEntityType.Builder.create(DisplayCaseBlockEntity::new, new Block[]{ContentBlocks.DISPLAY_CASE}).build()
    );
    public static final BlockEntityType<WrappedBundleBlockEntity> WRAPPED_BUNDLE = (BlockEntityType<WrappedBundleBlockEntity>)Registry.register(
            Registries.BLOCK_ENTITY_TYPE,
            Identifier.of("contentcontent", "wrapped_bundle"),
-           FabricBlockEntityTypeBuilder.create(WrappedBundleBlockEntity::new, new Block[]{ContentBlocks.WRAPPED_BUNDLE}).build()
+           BlockEntityType.Builder.create(WrappedBundleBlockEntity::new, new Block[]{ContentBlocks.WRAPPED_BUNDLE}).build()
    );
    public static final BlockEntityType<BrushableBlockEntity> BRUSHABLE_BLOCK = (BlockEntityType<BrushableBlockEntity>)Registry.register(
            Registries.BLOCK_ENTITY_TYPE,
            Identifier.of("contentcontent", "brushable_block"),
-           FabricBlockEntityTypeBuilder.create(BrushableBlockEntity::new, new Block[]{ContentBlocks.SUSPICIOUS_DIRT}).build()
+           BlockEntityType.Builder.create(BrushableBlockEntity::new, new Block[]{ContentBlocks.SUSPICIOUS_DIRT}).build()
    );
 
    public static void init() {

@@ -1,9 +1,7 @@
 package com.eightsidedsquare.contentcontent.common.block.mug;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
@@ -19,12 +17,7 @@ public class LavaMugBlock extends FilledMugBlock {
       super(settings);
    }
 
-   @Override
-   protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
-      return null;
-   }
-
-   public static int getLight(BlockState state) {
+    public static int getLight(BlockState state) {
       return (Integer)state.get(LEVEL) * 3;
    }
 

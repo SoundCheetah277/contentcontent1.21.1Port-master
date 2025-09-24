@@ -14,8 +14,6 @@ import net.minecraft.util.math.GlobalPos;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraft.entity.LivingEntity.*;
-
 public class MagnetTracker {
    private int cooldown = 40;
 

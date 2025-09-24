@@ -1,9 +1,7 @@
 package com.eightsidedsquare.contentcontent.common.block.mug;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,12 +17,7 @@ public class HoneyMugBlock extends FilledMugBlock {
       super(settings);
    }
 
-   @Override
-   protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
-      return null;
-   }
-
-   @Override
+    @Override
    protected Boolean canFill(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
       ItemStack stack = player.getStackInHand(hand);
       return stack.isOf(Items.HONEY_BOTTLE) && super.canFill(state, world, pos, player, hand);

@@ -4,7 +4,6 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Instrument;
 import net.minecraft.item.Instruments;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;

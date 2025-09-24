@@ -2,10 +2,8 @@ package com.eightsidedsquare.contentcontent.common.block.mug;
 
 import com.eightsidedsquare.contentcontent.common.entity.PotionMugBlockEntity;
 import com.eightsidedsquare.contentcontent.core.ContentBlocks;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,12 +22,7 @@ public class MilkMugBlock extends FilledMugBlock {
       super(settings);
    }
 
-   @Override
-   protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
-      return null;
-   }
-
-   @Override
+    @Override
    protected Boolean canFill(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
       ItemStack stack = player.getStackInHand(hand);
       return (stack.isOf(Items.MILK_BUCKET) || stack.getItem() instanceof PotionItem) && super.canFill(state, world, pos, player, hand);

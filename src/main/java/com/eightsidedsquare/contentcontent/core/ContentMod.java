@@ -17,7 +17,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import software.bernie.geckolib.GeckoLib;
 
 public class ContentMod implements ModInitializer {
    public static final String MOD_ID = "contentcontent";
