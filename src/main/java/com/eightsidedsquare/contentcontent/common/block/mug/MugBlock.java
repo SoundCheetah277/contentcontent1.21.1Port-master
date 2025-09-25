@@ -60,7 +60,7 @@ public class MugBlock extends HorizontalFacingBlock {
       } else if (stack.getItem() instanceof PotionItem) {
          player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
          this.setFilled(ContentBlocks.POTION_MUG, 1, state, world, pos);
-         if (stack.getItem() instanceof PotionItem potionItem) {
+         if (stack.getItem() instanceof PotionItem) {
             PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
             List<StatusEffectInstance> effects = potionContents != null ?
                     potionContents.customEffects() : List.of();
@@ -97,13 +97,12 @@ public class MugBlock extends HorizontalFacingBlock {
 
          return ActionResult.success(world.isClient);
       } else {
-         ActionResult actionResult = super.onUse(state, world, pos, player, hit);
-         return actionResult;
+          return super.onUse(state, world, pos, player, hit);
       }
    }
 
    protected void setFilled(Block block, int level, BlockState state, World world, BlockPos pos) {
-      world.setBlockState(pos, (BlockState)block.getStateWithProperties(state).with(FilledMugBlock.LEVEL, level), 3);
+      world.setBlockState(pos, block.getStateWithProperties(state).with(FilledMugBlock.LEVEL, level), 3);
    }
 
    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
